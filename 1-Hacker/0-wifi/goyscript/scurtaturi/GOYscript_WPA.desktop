@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GOYscript WPA
+Comment=by GOYfilms
+Exec=/opt/goyscript/goyscript -wpa
+Icon=/opt/goyscript/iconos/GOYscriptWPA.png
+Path=/opt/goyscript/
+Terminal=true
+StartupNotify=false
+Categories=Wpa;

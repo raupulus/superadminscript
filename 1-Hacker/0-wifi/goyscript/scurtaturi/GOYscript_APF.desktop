@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GOYscript APF
+Comment=by GOYfilms
+Exec=/opt/goyscript/goyscriptAPF
+Icon=/opt/goyscript/iconos/GOYscriptAPF.png
+Path=/opt/goyscript/
+Terminal=true
+StartupNotify=false
+Categories=Wpa;

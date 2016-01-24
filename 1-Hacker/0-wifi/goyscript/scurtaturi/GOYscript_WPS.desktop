@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GOYscript WPS
+Comment=by GOYfilms
+Exec=/opt/goyscript/goyscript -wps
+Icon=/opt/goyscript/iconos/GOYscriptWPS.png
+Path=/opt/goyscript/
+Terminal=true
+StartupNotify=false
+Categories=Wpa wps;

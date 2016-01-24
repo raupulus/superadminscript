@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GOYscript DIC
+Comment=by GOYfilms
+Exec=/opt/goyscript/goyscriptDIC
+Icon=/opt/goyscript/iconos/GOYscriptDIC.png
+Path=/opt/goyscript/
+Terminal=true
+StartupNotify=false
+Categories=Diccionarios;

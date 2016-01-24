@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GOYscript SSL
+Comment=by GOYfilms
+Exec=/opt/goyscript/goyscriptSSL
+Icon=/opt/goyscript/iconos/GOYscriptSSL.png
+Path=/opt/goyscript/
+Terminal=true
+StartupNotify=false
+Categories=Credenciales;

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GOYscript WEP
+Comment=by GOYfilms
+Exec=/opt/goyscript/goyscript -wep
+Icon=/opt/goyscript/iconos/GOYscriptWEP.png
+Path=/opt/goyscript
+Terminal=true
+StartupNotify=false
+Categories=Wireless;
