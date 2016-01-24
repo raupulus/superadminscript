@@ -1,0 +1,5 @@
+Enlace para comando:
+ln -s /home/nerviozzo/Documentos/5\ -\ Script/2\ -\ Rsync/Server_to_Ultrabook/sincronizar_todos.sh /usr/bin/rsyncnhck
+
+Comando: 
+rsyncnhck

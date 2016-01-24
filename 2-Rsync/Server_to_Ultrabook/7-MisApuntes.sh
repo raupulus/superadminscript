@@ -1,0 +1,4 @@
+#!/bin/bash
+#Sincronizar carpeta Mis Apuntes
+
+rsync -av --delete --progress root@172.18.1.1:/media/nerviozzo/DATOS_2TB/7\\\ -\\\ Mis\\\ Apuntes/ /home/fryntiz/1-MOUNT/DATOS/7\ -\ Mis\ Apuntes\
