@@ -1,0 +1,35 @@
+#Dependencias Hack wifi
+apt-get install aircrack-ng mawk curl isc-dhcp-server hostapd lighttpd macchanger mdk php5-cgi pyrit python unzip xterm sudo pcaputils python-pcapy libpcap* screen libssl1* libcrypto++-utils libcrypto++9 wireless-tools reaver
+
+
+#INSTALAR DEPENDENCIA MDK3 COMPILANDO LIBRERÍA
+
+#Si fallan comandos como si faltasen ejecutar y dar "no" a lo siguiente:
+sudo dpkg-reconfigure dash
+#Así utilizaremso bash en vez de dash
+
+
+
+###SCRIPT
+
+#Actualizar Sistema
+sudo apt-get update
+sudo apt-get upgrade
+
+#Instalar Dependencias desde APT
+sudo apt-get install ............
+
+#Compilar e instalar mdk3
+cd ..........
+sudo tar ........
+cd .........
+sudo make
+sudo make install
+
+if (ls /sbin/mdk3 == /sbin/mdk3) {
+	echo "Se ha instalado 'mdk3' correctamente"
+} else {
+	echo "Ha ocurrido un error al compilar,
+		prueba a compilar manualmente"
+}
+
