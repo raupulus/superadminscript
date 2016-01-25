@@ -1,0 +1,60 @@
+#!/bin/bash
+TAIL="./software/tail"
+PINS="./software/PINs.goy"
+HEAD="./software/head"
+WPS_TEMP="wps"
+SESIONES="$WPS_TEMP/sesiones"
+CLAVES="claves"
+ARCHIVO=`cat "$SESIONES/log_actual"`
+MAC3PARES=`cat "$SESIONES/log_actual" | awk -F '(' '{print $2}' | $HEAD -c 8 | sed 's/-/:/g'`
+let CONT=1
+
+function mostrar_log
+{
+LINEA=`sed -n ${CONT}p "$SESIONES/$ARCHIVO.log"`
+while [ "$LINEA" != "" ]
+do
+	echo -e "$LINEA"
+	let CONT=$CONT+1
+	LINEA=`sed -n ${CONT}p "$SESIONES/$ARCHIVO.log"`
+done
+}
+
+function comprobar_si_encontro_la_clave
+{
+WPA=`cat "$SESIONES/$ARCHIVO.log" | grep "WPA PSK" | awk -F "'" '{print $2}'`
+if [ "$WPA" != "" ]
+then
+	PIN=`cat "$SESIONES/$ARCHIVO.log" | grep "WPS PIN" | awk -F "'" '{print $2}'`
+	echo "Pin WPS.....: '$PIN'" > "$CLAVES/$ARCHIVO.txt"
+	echo "Clave WPA...: '$WPA'" >> "$CLAVES/$ARCHIVO.txt"
+	echo "$MAC3PARES"-"$PIN" >> "$PINS"
+	sleep 2 #PEQUEÑA PAUSA PARA DAR TIEMPO A GENERAR EL ARCHIVO CON LA CONTRASEÑA
+	exit 0
+fi
+}
+
+
+# PROGRAMA PRINCIPAL ########################
+
+REAVER_FUNCIONANDO=`ps -A | grep reaver`
+while [ "$REAVER_FUNCIONANDO" != "" ] && [ ! -e "$CLAVES/$ARCHIVO.txt" ]
+do
+	mostrar_log
+	comprobar_si_encontro_la_clave
+ 	sleep 0.5 #PEQUEÑA PAUSA PARA NO CONSUMIR MUCHOS RECURSOS
+	REAVER_FUNCIONANDO=`ps -A | grep reaver`
+	COMPLETADO=`cat "$SESIONES/$ARCHIVO.log" | grep --binary-files=text "%" | $TAIL -n 1 | awk -F '%' '{print $1}' | sed 's/\[+\]//g' | sed 's/ //g' | sed 's/\./,/g'`
+	CONCOLOR=`echo "$COMPLETADO" | grep "m"`
+	if [ "$CONCOLOR" != "" ] #ELIMINA EL FORMATO DE COLOR AL PORCENTAJE SI LO TIENE
+	then
+		COMPLETADO=`echo $COMPLETADO | awk -F "m" '{print $2}'`
+	fi
+	if [ "$COMPLETADO" = "99,99" ]
+	then
+		break
+	fi
+done
+mostrar_log
+comprobar_si_encontro_la_clave
+sleep 2
