@@ -108,6 +108,10 @@ echo "Otra posibilidad es instalar dentro de /usr que por ahora sería manualmen
 #Inicializar git para actualizar
 #git init
 #git remote add origin https://github.com/fryntiz/ShellScript
+#git add *
+#git commit -a -m "auto dev server commit"
+#git fetch origin master
+#git merge -s recursive -X theirs origin/master
 #git pull origin master
 
 #Comprobar si existen actualizaciones y descargarlas
