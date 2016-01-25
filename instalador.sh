@@ -71,7 +71,7 @@ if [ -d $LugarDeInstalacion ]
 	then
 		echo -e "Existe el lugar de instalación, procediendo a borrarlo"
 		sleep 1
-		rm -R $LugarDeInstalacion
+		rm -R -f $LugarDeInstalacion
 		mkdir $LugarDeInstalacion
 		echo -e "$LugarDeInstalacion ha sido limpiado"
 		sleep 1
@@ -90,7 +90,7 @@ cp -R ./* $LugarDeInstalacion/
 echo -e "Programa instalado correctamente dentro de $LugarDeInstalacion/"
 
 #Crear lanzador como /bin/menu
-echo -e "Creando lanzador mediante el comando 'menu'"
+echo -e "Creando lanzador mediante el comando 'menu' se necesitará ser root"
 sudo touch /bin/menu
 sudo echo "" > /bin/menu
 sudo echo "#!/bin/bash" >> /bin/menu
