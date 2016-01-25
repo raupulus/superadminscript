@@ -1,0 +1,10 @@
+./1-Hacker/0-wifi/fakeAP/linset/tmp/*
+./1-Hacker/0-wifi/goyscript/wpa
+./1-Hacker/0-wifi/goyscript/wep
+./1-Hacker/0-wifi/goyscript/wps
+./1-Hacker/0-wifi/goyscript/ -> AÑADIR TODOS LOS DIRECTORIOS TEMPORALES
+./1-Hacker/0-wifi/wpa/ObtenerHandshake/handshaker/handshake/*
+
+
+
+
