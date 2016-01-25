@@ -1,0 +1,98 @@
+#!/bin/bash
+CLAVES=72000000
+PARAMETRO="$1"
+CRUNCH="software/./crunch"
+PREFIJOS='\
+0720
+0721
+0722
+0723
+0724
+0725
+0726
+0727
+0728
+0729
+0730
+0731
+0732
+0733
+0734
+0735
+0736
+0737
+0738
+0739
+0740
+0741
+0742
+0743
+0744
+0745
+0746
+0747
+0748
+0749
+0750
+0751
+0752
+0753
+0754
+0755
+0756
+0757
+0758
+0759
+0760
+0761
+0762
+0763
+0764
+0765
+0766
+0767
+0768
+0769
+0770
+0771
+0772
+0773
+0774
+0775
+0776
+0777
+0778
+0779
+0780
+0781
+0782
+0783
+0784
+0785
+0786
+0786
+0787
+0788
+0789
+0354'
+let CUANTOS_PREFIJOS=`echo "$PREFIJOS" | wc -l`
+if [ "$PARAMETRO" = "" ]
+then
+	let CONT=1
+else
+	PREF=`echo "$PARAMETRO" | cut -c-4` #extraemos el prefijo del último número pasado como parámetro
+	let CONT=`echo "$PREFIJOS" | grep -n "$PREF" | awk -F ':' '{print $1}'`
+fi
+
+while [ $CONT -le $CUANTOS_PREFIJOS ]
+do
+	PREFIJO_ACTUAL=`echo "$PREFIJOS" | sed -n ${CONT}p`
+	if [ "$PARAMETRO" != "" ] #si se pasó algún parámetro (=sesión anterior)
+	then
+		"$CRUNCH" 10 10 0123456789 -t $PREFIJO_ACTUAL%%%%%% -s "$PARAMETRO" 2>/dev/null
+		PARAMETRO=""
+	else
+		"$CRUNCH" 10 10 0123456789 -t $PREFIJO_ACTUAL%%%%%% 2>/dev/null
+	fi
+	let CONT=$CONT+1
+done
