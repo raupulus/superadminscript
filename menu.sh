@@ -1,22 +1,25 @@
 #!/bin/bash
 
 #Variables Generales
-LongitudMenu='13';
-MenuActual='Menú Principal de Administración - by Fryntiz';
-Menu0='Backups o Copias de seguridad';
-Menu1='Hacking Tool';
-Menu2='Sincronizar directorios mediante RSYNC';
-Menu3='Gestionar Servicios del Sistema';
-Menu4='Gestión de Servidores';
-Menu5='Limpiar Sistema Operativo';
-Menu6='Gestión de Repositorios GIT';
-Menu7='Gestión de INTRANET';
-Menu8='Dominios y Hosting';
-Menu9='Firewall Local';
-Menu10='Gestión de Software Debian (DPKG y APT)';
-Menu11='Personalización del Sistema Operativo y su software';
-Menu12='Salud del Hardware y del Sistema';
-Salir='Salir de este Menú';
+LongitudMenu='14'
+MenuActual='Menú Principal de Administración - by Fryntiz'
+Menu0='Backups o Copias de seguridad'
+Menu1='Hacking Tool'
+Menu2='Sincronizar directorios mediante RSYNC'
+Menu3='Gestionar Servicios del Sistema'
+Menu4='Gestión de Servidores'
+Menu5='Limpiar Sistema Operativo'
+Menu6='Gestión de Repositorios GIT'
+Menu7='Gestión de INTRANET'
+Menu8='Dominios y Hosting'
+Menu9='Firewall Local'
+Menu10='Gestión de Software Debian (DPKG y APT)'
+Menu11='Personalización del Sistema Operativo y su software'
+Menu12='Salud del Hardware y del Sistema'
+InstalarActualizar='Instalar o Actualizar este programa'
+Salir='Salir de este Menú'
+
+NoFunca="(No hace nada aún)"
 
 ##### CONSTANTES COLORES #####
 negro="\033[0;30m"
@@ -45,32 +48,35 @@ clear;
 # Menu
 while :
 	do
-		echo "";
-		echo -e "                 $amarillo $MenuActual ";
-		echo "";
-		echo -e "   $rojoC 0)  $verdeC $Menu0";
-		echo -e "   $rojoC 1)  $verdeC $Menu1 ";
-		echo -e "   $rojoC 2)  $verdeC $Menu2 ";
-		echo -e "   $rojoC 3)  $verdeC $Menu3 ";
-		echo -e "   $rojoC 4)  $verdeC $Menu4 ";
-		echo -e "   $rojoC 5)  $verdeC $Menu5 ";
-		echo -e "   $rojoC 6)  $verdeC $Menu6 ";
-		echo -e "   $rojoC 7)  $verdeC $Menu7 ";
-		echo -e "   $rojoC 8)  $verdeC $Menu8 ";
-		echo -e "   $rojoC 9)  $verdeC $Menu9 ";
-		echo -e "   $rojoC 10) $verdeC $Menu10 ";
-		echo -e "   $rojoC 11) $verdeC $Menu11 ";
-		echo -e "   $rojoC 12) $verdeC $Menu12 ";
+		echo ""
+		echo -e "                 $amarillo $MenuActual "
+		echo ""
+		echo -e "   $rojoC 0)  $verdeC $Menu0"
+		echo -e "   $rojoC 1)  $verdeC $Menu1"
+		echo -e "   $rojoC 2)  $verdeC $Menu2"
+		echo -e "   $rojoC 3)  $verdeC $Menu3 $amarillo$NoFunca"
+		echo -e "   $rojoC 4)  $verdeC $Menu4 $amarillo$NoFunca"
+		echo -e "   $rojoC 5)  $verdeC $Menu5 $amarillo$NoFunca"
+		echo -e "   $rojoC 6)  $verdeC $Menu6 $amarillo$NoFunca"
+		echo -e "   $rojoC 7)  $verdeC $Menu7 $amarillo$NoFunca"
+		echo -e "   $rojoC 8)  $verdeC $Menu8 $amarillo$NoFunca"
+		echo -e "   $rojoC 9)  $verdeC $Menu9 $amarillo$NoFunca"
+		echo -e "   $rojoC 10) $verdeC $Menu10 $amarillo$NoFunca"
+		echo -e "   $rojoC 11) $verdeC $Menu11 $amarillo$NoFunca"
+		echo -e "   $rojoC 12) $verdeC $Menu12 $amarillo$NoFunca"
+
+#Penúltimo menú para Instalar o Actualizar
+		echo -e "   $rojoC $(expr $LongitudMenu - 1)) $cyan $InstalarActualizar"
 
 #Último Menú para salir:
-		echo -e "   $rojoC $LongitudMenu) $magentaC $Salir";
-		echo "";
-		echo "";
+		echo -e "   $rojoC $LongitudMenu) $magentaC $Salir"
+		echo ""
+		echo ""
 
 #Comentario impreso en pantalla donde muestra opciones disponibles a elegir
-		echo -e "                   $azulC Elige una opción  (0 - $LongitudMenu)";
-		echo "";
-		echo "";
+		echo -e "                   $azulC Elige una opción  (0 - $LongitudMenu)"
+		echo ""
+		echo ""s
 
 	read entrada
 	case $entrada in
