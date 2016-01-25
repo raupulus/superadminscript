@@ -49,11 +49,11 @@ echo -e "$verdeC        Descargando contenido$grisC"
 #Condicional if: -d para comprobar si existe dir y -f para archivos -x permisos de ejecución
 if [ -d ".git" ]
 	then
-		echo -e "$rojoC .git Si existe$grisC"
+		echo -e "$rojoC El repositorio git si está inicializado$grisC"
 		git pull
 	else
 		echo -e "$rojoC .git No existe$grisC"
-		#git init FryntizMenu
+		#git init 'https://github.com/fryntiz/ShellScript'
 fi
 
 #Reinstalación limpia
@@ -62,6 +62,4 @@ fi
 #git clone https://github.com/fryntiz/ShellScript
 #sudo sh instalador.sh
 
-echo -e "$amarillo Aún no se puede Actualizar el Programa desde GIT$grisC"
-echo "Planeado crear Repositorio en GIT y autoactualizar mediante este script"
-echo "Pensar donde mantendrá temporales: carpeta del programa, /tmp general, dir tmp de usuario o dir tmp de root"
+echo -e "$amarillo Aún estamos en pruebas y es muy probable que falle el actualizador automático$grisC"
