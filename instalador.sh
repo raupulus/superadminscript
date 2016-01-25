@@ -106,6 +106,9 @@ echo -e "$amarillo Aún no se ha declarado el punto de instalación definitivo y
 echo "Otra posibilidad es instalar dentro de /usr que por ahora sería manualmente"
 
 #Inicializar git para actualizar
+#git init
+#git remote add origin https://github.com/fryntiz/ShellScript
+#git pull origin master
 
 #Comprobar si existen actualizaciones y descargarlas
 
