@@ -50,10 +50,18 @@ echo -e "$verdeC        Descargando contenido$grisC"
 if [ -d ".git" ]
 	then
 		echo -e "$rojoC El repositorio git si está inicializado$grisC"
-		git pull
+		git add *
+		git commit -a -m "auto dev server commit"
+		git pull origin master
 	else
 		echo -e "$rojoC .git No existe$grisC"
-		#git init 'https://github.com/fryntiz/ShellScript'
+		git init
+		git remote add origin https://github.com/fryntiz/ShellScript
+		git add *
+		git commit -a -m "auto dev server commit"
+		git fetch origin master
+		git merge -s recursive -X theirs origin/master
+		git pull origin master
 fi
 
 #Reinstalación limpia
