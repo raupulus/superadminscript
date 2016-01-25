@@ -54,6 +54,7 @@ if [ -d ".git" ]
 		git commit -a -m "auto dev server commit"
 		git fetch origin master
 		git merge -s recursive -X theirs origin/master
+		clear
 		git pull origin master
 	else
 		echo -e "$rojoC .git No existe$grisC"
@@ -63,6 +64,7 @@ if [ -d ".git" ]
 		git commit -a -m "auto dev server commit"
 		git fetch origin master
 		git merge -s recursive -X theirs origin/master
+		clear
 		git pull origin master
 fi
 
