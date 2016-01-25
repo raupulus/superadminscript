@@ -2,7 +2,8 @@
 
 #Variables Generales
 UsuarioActual=$(whoami)
-LugarDeInstalacion="~/Documento/0-Scripts_2"
+DirInstalacion="Documentos/0-Scripts_2"
+LugarDeInstalacion="/home/$UsuarioActual/$DirInstalacion"
 
 ##### CONSTANTES COLORES #####
 negro="\033[0;30m"
@@ -33,34 +34,80 @@ resaltar="\E[7m"
 
 clear;
 
-#Nos aseguramos de que se encuentra instalado bash
-sudo apt-get update
-sudo apt-get install bash
-
 #Configurar BASH ya que es un requisito para que se visualice y funcione correctamente
 echo -e "$rojoC Reconfigurando bash (En el caso de que utilices Dash) $grisC"
 echo -e "Pulsa$subrayar$verdeC 'Y' $grisC para continuar"
 #Aquí introducir condicional (if echo $SHELL == /bin/bash) {exit o continue}else ------ rm /bin/sh | ln -s /bin/bash /bin/sh o así:
 # sudo usermod -s /bin/bash $UsuarioActual
+if [ $SHELL == "/bin/bash" ]
+	then
+		echo -e "El SHELL es /bin/bash"
+	else
+		echo -e "No se encuentra instalado BASH, procediendo a su actualización"
+		sudo apt-get update
+		sudo apt-get install bash
+		sudo rm /bin/sh
+		sudo ln -s /bin/sh /bin/bash
+		sudo usermod -s /bin/bash $UsuarioActual
+fi
 
 #Mostrar el usuario que soy y la ruta donde se instalará el menú
 echo -e "Instalando script con el usuario: $verdeC$subrayar$UsuarioActual$grisC"
 echo -e "El Menú se instalará en el directorio: $verdeC$subrayar$LugarDeInstalacion$grisC"
+echo -e "Pulsa control+C para abortar la instalación antes de $rojoC 5 segundos$grisC"
+sleep 1
+echo -e "$rojoC 4$grisC ... Segundos para instalar"
+sleep 1
+echo -e "$rojoC 3$grisC ... Segundos para instalar"
+sleep 1
+echo -e "$rojoC 2$grisC ... Segundos para instalar"
+sleep 1
+echo -e "$rojoC 1$grisC ... Segundo para instalar"
+sleep 1
 
 #Remover directorio de instalación si ya existe
 echo -e "Limpiando instalación anterior si la hubiera"
-# if $LugarDeInstalacion == --- {rm $LugarDeInstalacion} else {}
-
-#Crear lugar de instalación
-echo -e "Creando destino para la instalación"
-# mkdir $LugarDeInstalacion
+if [ -d $LugarDeInstalacion ]
+	then
+		echo -e "Existe el lugar de instalación, procediendo a borrarlo"
+		sleep 1
+		rm -R $LugarDeInstalacion
+		mkdir $LugarDeInstalacion
+		echo -e "$LugarDeInstalacion ha sido limpiado"
+		sleep 1
+	else
+		echo -e "El destino de la instalación no existe, se procede a crearlo"
+		sleep 1
+		mkdir $LugarDeInstalacion
+		echo -e "$LugarDeInstalacion ha sido creado"
+		whoami
+		pwd
+fi
 
 #Copiar programa dentro del directorio creado
 echo -e "Instalando programa"
-# cp ./* $LugarDeInstalacion/
-echo -e "Programa instalado  "
+cp -R ./* $LugarDeInstalacion/
+echo -e "Programa instalado correctamente dentro de $LugarDeInstalacion/"
 
-echo "$LugarDeInstalacion/"
-echo -e "$amarillo Aún no se ha definido el punto de instalación $grisC"
-echo "Planeado tomar ~/ para instalar dentro del perfil usuario"
-echo "Otra posibilidad es instalar dentro de /usr o dentro de /root"
+#Crear lanzador como /bin/menu
+echo -e "Creando lanzador mediante el comando 'menu'"
+sudo touch /bin/menu
+sudo echo "" > /bin/menu
+sudo echo "#!/bin/bash" >> /bin/menu
+sudo echo "sh ~/$DirInstalacion/menu.sh" >> /bin/menu
+sudo chmod 777 "/bin/menu"
+sleep 1
+echo -e "Ahora puedes acceder al Programa accediendo con el usuario que lo hayas instalado (puedes instalarlo con varios usuarios) a un terminal y escribiendo simplemente la palabra 'menu'"
+
+
+echo ""
+echo ""
+echo -e "$amarillo Aún no se ha declarado el punto de instalación definitivo y que este será temporal en un directorio dentro de Documentos del usuario que lo instala$grisC"
+echo "Otra posibilidad es instalar dentro de /usr que por ahora sería manualmente"
+
+#Inicializar git para actualizar
+
+#Comprobar si existen actualizaciones y descargarlas
+
+#Iniciar el programa
+~/$DirInstalacion/menu.sh
