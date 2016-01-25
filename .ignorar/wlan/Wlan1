@@ -1,0 +1,40 @@
+#!/bin/bash
+
+
+echo Script creado por NZ-Creaciones para cambiar la dirección mac automaticamente
+echo
+echo
+
+echo ..dentro de 4 seg se inicia el script patrocinado por NZ-Creaciones
+
+
+echo
+echo
+
+
+sleep 4s
+
+
+echo desactivando interfaz Wlan1
+echo
+
+ifconfig wlan1 down
+
+
+echo Cambiar dirección MAC en modo automático
+echo
+echo
+macchanger -a wlan1
+
+
+echo
+echo
+
+echo Volviendo a levantar la interfaz Wlan1
+
+ifconfig wlan1 up
+echo
+echo
+echo
+echo
+echo Todo ha terminado correcto, NZ-Creaciones te ayudó con este script

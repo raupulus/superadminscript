@@ -1,0 +1,10 @@
+#!/bin/bash
+clear
+sleep 1
+echo Comienza el escaneo de puertos
+sleep 2
+nmap -sS -O -n -p1-65535 localhost
+sleep 1
+echo Finalizado el escaneo
+sleep 1 
+
