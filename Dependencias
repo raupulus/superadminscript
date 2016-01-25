@@ -1,2 +1,7 @@
+#Dependencias de software
+git bash
 
-git 
+
+#Si fallan comandos como si faltasen: ejecutar y dar "no" a lo siguiente:
+sudo dpkg-reconfigure dash
+#Así utilizaremos bash en vez de dash
