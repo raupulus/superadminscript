@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Variables Generales
-LongitudMenu='14'
+LongitudMenu='15'
 MenuActual='Menú Principal de Administración - by Fryntiz'
 Menu0='Backups o Copias de seguridad'
 Menu1='Hacking Tool'
@@ -16,6 +16,7 @@ Menu9='Firewall Local'
 Menu10='Gestión de Software Debian (DPKG y APT)'
 Menu11='Personalización del Sistema Operativo y su software'
 Menu12='Salud del Hardware y del Sistema'
+Configurar="Configurar Opciones para el funcionamiento del Menú"
 InstalarActualizar='Instalar o Actualizar este programa'
 Salir='Salir de este Menú'
 
@@ -43,13 +44,13 @@ parpadeoON="\E[5m"
 parpadeoOFF="\E[0m"
 resaltar="\E[7m"
 
-clear;
+clear
 
 # Menu
 while :
 	do
 		echo ""
-		echo -e "                 $amarillo $MenuActual "
+		echo -e "             $amarillo $MenuActual $rojoC   Version 0.1 BETA"
 		echo ""
 		echo -e "   $rojoC 0)  $verdeC $Menu0"
 		echo -e "   $rojoC 1)  $verdeC $Menu1"
@@ -65,143 +66,152 @@ while :
 		echo -e "   $rojoC 11) $verdeC $Menu11 $amarillo$NoFunca"
 		echo -e "   $rojoC 12) $verdeC $Menu12 $amarillo$NoFunca"
 
+#Entrada para configurar opciones
+		echo -e "   $rojoC $(expr $LongitudMenu - 2)) $rojo $Configurar"
+
 #Penúltimo menú para Instalar o Actualizar
 		echo -e "   $rojoC $(expr $LongitudMenu - 1)) $cyan $InstalarActualizar"
 
 #Último Menú para salir:
 		echo -e "   $rojoC $LongitudMenu) $magentaC $Salir"
 		echo ""
-		echo ""
 
 #Comentario impreso en pantalla donde muestra opciones disponibles a elegir
 		echo -e "                   $azulC Elige una opción  (0 - $LongitudMenu)"
 		echo ""
-		echo ""s
 
 	read entrada
 	case $entrada in
 
 		0)#Generar Todos los BACKUPS
-			clear;
-			echo "$Menu0";
-			sleep 1;
-			cd 0-Backups;
-			sh menu.sh;
-			cd ..;
+			clear
+			echo "$Menu0"
+			sleep 1
+			cd 0-Backups
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
 		1)#Hacking Tools
-			clear;
-			echo "$Menu1";
-			sleep 1;
-			cd 1-Hacker;
-			sh menu.sh;
-			cd ..;
+			clear
+			echo "$Menu1"
+			sleep 1
+			cd 1-Hacker
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
 		2)#Sincronizar todos los RSYNC
-			clear;
-			echo "$Menu2";
-			cd 2-Rsync;
-			sh sincronizar_todos.sh;
-			cd ..;
+			clear
+			echo "$Menu2"
+			cd 2-Rsync
+			sh sincronizar_todos.sh
+			cd ..
 			sleep 1;;
 
 		3)#Servicios del sistema
-			echo "$Menu3";
-			cd 3-Servicios;
-			sh menu.sh;
-			cd ..;
+			echo "$Menu3"
+			cd 3-Servicios
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
 		4)#Servidores
-			echo "$Menu4";
-			cd 4-Servidores;
-			sh menu.sh;
-			cd ..;
+			echo "$Menu4"
+			cd 4-Servidores
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
 		5)#Limpiar Sistema
-			echo "$Menu5";
-			cd 5-LimpiarSistema;
-			sh menu.sh;
-			cd ..;
+			echo "$Menu5"
+			cd 5-LimpiarSistema
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
 		6)#Gestión de Repositorios GIT
-			echo "$Menu6";
-			cd 5-LimpiarSistema;
-			sh menu.sh;
-			cd ..;
+			echo "$Menu6"
+			cd 5-LimpiarSistema
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
 		7)#Intranet
-			echo "$Menu7";
-			cd 7-Intranet;
-			echo "YO AÚN NO HAGO NADA";
+			echo "$Menu7"
+			cd 7-Intranet
+			echo "YO AÚN NO HAGO NADA"
 			sh menu.sh
 			cd ..
 			sleep 1;;
 
 		8)#Hosting
-			echo "$Menu8";
-			cd 8-Hosting;
-			echo "YO AÚN NO HAGO NADA";
-			sh menu.sh;
-			cd ..;
+			echo "$Menu8"
+			cd 8-Hosting
+			echo "YO AÚN NO HAGO NADA"
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
 		9)#FirewallLocal
-			echo "$Menu9";
-			cd 9-FirewallLocal;
-			echo "YO AÚN NO HAGO NADA";
-			sh menu.sh;
-			cd ..;
+			echo "$Menu9"
+			cd 9-FirewallLocal
+			echo "YO AÚN NO HAGO NADA"
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
 		10)#GestorSoftware
-			echo "$Menu10";
-			cd 10-GestorSoftware;
-			echo "YO AÚN NO HAGO NADA";
-			sh menu.sh;
-			cd ..;
+			echo "$Menu10"
+			cd 10-GestorSoftware
+			echo "YO AÚN NO HAGO NADA"
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
 		11)#Personalización Sistema
-			echo "$Menu11";
-			cd 11-PersonalizacionSistema;
-			echo "YO AÚN NO HAGO NADA";
-			sh menu.sh;
-			cd ..;
+			echo "$Menu11"
+			cd 11-PersonalizacionSistema
+			echo "YO AÚN NO HAGO NADA"
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
 		12)#Salud Hardware
-			echo "$Menu12";
-			cd 12-SaludHardware;
-			echo "YO AÚN NO HAGO NADA";
-			sh menu.sh;
-			cd ..;
+			echo "$Menu12"
+			cd 12-SaludHardware
+			echo "YO AÚN NO HAGO NADA"
+			sh menu.sh
+			cd ..
 			sleep 1;;
 
+		$(expr $LongitudMenu - 2))#Configurar todas las opciones
+			echo "$Configurar"
+			echo "";;
+
+		$(expr $LongitudMenu - 1))#Instalar o Actualizar
+			echo "$InstalarActualizar"
+			echo "";;
+
 		$LongitudMenu)#Salir de este Menú
-			clear;
+			clear
 			echo -e "$grisC"
-			echo "Nos vemos, ya volverás....";
+			echo "Nos vemos, ya volverás...."
 			echo ""
 			exit 1;;
 
 		*)#Cualquier otra opción que no sea las anteriores
-			clear;
-			echo "";
-			echo -e "                      $rojoC ATENCIÓN: ERROR y de los chungos";
-			echo "";
+			clear
+			echo ""
+			echo -e "                      $rojoC ATENCIÓN: ERROR y de los chungos"
+			echo ""
 			echo -e "$rojoC Pulsar $amarillo $entrada  $rojoC no va a conseguir hacer nada porque no está en la lista pedazo de melón.
 
-¿Eso son dedos o es un catálogo de salsichas?, pulsa solo un número del$amarillo 1$rojoC al$amarillo 8";
-			echo "";
-			echo "";
-			echo "";
-			echo -e "               $azulC Pulsa sobre cualquier tecla para volver al menú...";
+¿Eso son dedos o es un catálogo de salsichas?, pulsa solo un número del$amarillo 1$rojoC al$amarillo 8"
+			echo ""
+			echo ""
+			echo ""
+			echo -e "               $azulC Pulsa sobre cualquier tecla para volver al menú..."
 			echo -e "$grisC"
 	read foo;;
 esac
