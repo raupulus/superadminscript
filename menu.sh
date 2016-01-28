@@ -22,6 +22,12 @@ Salir='Salir de este Menú'
 
 NoFunca="(No hace nada aún)"
 
+UsuarioActual=$(whoami)
+DirInstalacion="Documentos/0-Scripts_2"
+LugarDeInstalacion="/home/$UsuarioActual/$DirInstalacion"
+DirPreferencias="$LugarDeInstalacion/PREFERENCIAS"
+version="$(cat $LugarDeInstalacion/version)"
+
 ##### CONSTANTES COLORES #####
 negro="\033[0;30m"
 rojo="\033[0;31m"
@@ -50,7 +56,7 @@ clear
 while :
 	do
 		echo ""
-		echo -e "             $amarillo $MenuActual $rojoC   Version 0.1 BETA"
+		echo -e "             $amarillo $MenuActual $rojoC   $version"
 		echo ""
 		echo -e "   $rojoC 0)  $verdeC $Menu0"
 		echo -e "   $rojoC 1)  $verdeC $Menu1"
@@ -187,10 +193,16 @@ while :
 
 		$(expr $LongitudMenu - 2))#Configurar todas las opciones
 			echo "$Configurar"
+            sh personalizar.sh
 			echo "";;
 
 		$(expr $LongitudMenu - 1))#Instalar o Actualizar
 			echo "$InstalarActualizar"
+            echo -e "$amarillo Esto llevará a un menú para elegir entre:$blanco"
+            echo -e "$rojoC    Instalar$blanco"
+            echo -e "$rojoC    Actualizar$blanco"
+            echo -e "$rojoC    Eliminar instalación y reinstalar en limpio$blanco"
+            sleep 6
 			echo "";;
 
 		$LongitudMenu)#Salir de este Menú
@@ -207,7 +219,7 @@ while :
 			echo ""
 			echo -e "$rojoC Pulsar $amarillo $entrada  $rojoC no va a conseguir hacer nada porque no está en la lista pedazo de melón.
 
-¿Eso son dedos o es un catálogo de salsichas?, pulsa solo un número del$amarillo 1$rojoC al$amarillo 8"
+¿Eso son dedos o es un catálogo de salsichas?, pulsa solo un número del$amarillo 0$rojoC al$amarillo $LongitudMenu"
 			echo ""
 			echo ""
 			echo ""
