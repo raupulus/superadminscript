@@ -1,18 +1,22 @@
 #!/bin/bash
 
 #Variables Generales
-LongitudMenu='1'
-MenuActual='Menú de Configuración Preferencias y Rutas'
-Menu0='Ruta para guardar Backups'
-Salir='Salir de este Menú'
-
-NoFunca="(No hace nada aún)"
-
 UsuarioActual=$(whoami)
 DirInstalacion="Documentos/0-Scripts_2"
 LugarDeInstalacion="/home/$UsuarioActual/$DirInstalacion"
 DirPreferencias="$LugarDeInstalacion/PREFERENCIAS"
 version="$(cat $LugarDeInstalacion/version)"
+
+LongitudMenu='3'
+MenuActual='Menú de Configuración Preferencias y Rutas'
+Menu0='Ruta para guardar Backups'
+#Permisos="$(sudo chmod 777 "$DirPreferencias/*" && sudo chown ""$UsuarioActual":"$UsuarioActual" $DirPreferencias/*")"
+
+Borrar="Borrar todas las configuraciones y preferencias de rutas"
+RepararPermisos="Reparar Permisos de archivos de configuración (Solo si dan error)"
+Salir='Salir de este Menú'
+
+NoFunca="(No hace nada aún)"
 
 ##### CONSTANTES COLORES #####
 negro="\033[0;30m"
@@ -43,11 +47,14 @@ while :
 	do
 		echo ""
 		echo -e "             $amarillo $MenuActual $rojoC   $version"
+		echo -e "$azulC  Estas configuraciones solo las tienes que hacer 1 vez y se quedaran guardadas en la carpeta$rojoC 'PREFERENCIAS'$azulC del directorio raíz del programa$blanco"
 		echo ""
 		echo -e "   $rojoC 0)  $verdeC $Menu0"
+		echo -e "   $rojoC $(expr $LongitudMenu - 2))  $verdeC $Borrar"
+		echo -e "   $rojoC $(expr $LongitudMenu - 1))  $verdeC $RepararPermisos"
 
 #Último Menú para salir:
-		echo -e "   $rojoC $LongitudMenu) $magentaC $Salir"
+		echo -e "   $rojoC $LongitudMenu) $magentaC  $Salir"
 		echo ""
 
 #Comentario impreso en pantalla donde muestra opciones disponibles a elegir
@@ -61,25 +68,47 @@ while :
 			clear
 			echo "$Menu0"
 			sleep 1
+			#Mostramos la ruta que hay actualmente guardada
+			echo -e "La ruta actual es: $(cat $DirPreferencias/backups.pref)"
+			#Mostramos indicaciones
 			echo -e "$amarillo Elige la ruta donde deseas$rojoC Guardar$amarillo tus copias de seguridad$blanco"
-            echo ""
-            echo -e "$verdeC Puedes utilizar cualquier ruta pero asegurate que funciona y no uses barra inclinada '/' al final$blanco"
-            echo -e ""
-            echo -e "$amarillo A continuación te dejo dos ejemplos de rutas, solo tienes que escribir donde deseas guardar tus backups y pulsar$rojoC ENTER$blanco"
-            echo -e "$azulC /home/usuario/Documentos/Backups"
-            echo -e "$azulC ~/Documentos/Backups"
-            echo ""
-            echo ""
-            echo -e "$verdeC Guardar en:$rojoC"
-            read entrada
-            echo "$entrada" > "$DirPreferencias/backups.pref"
-            echo ""
-            echo ""
-            clear
-            echo -e "$verdeC Se ha guardado la siguiente ruta:"
-            echo -e "$rojoC$entrada"
+			echo ""
+			echo -e "$verdeC Puedes utilizar cualquier ruta pero asegurate que funciona y no uses barra inclinada '/' al final$blanco"
+			echo -e ""
+			#Ejemplos
+			echo -e "$amarillo A continuación te dejo dos ejemplos de rutas, solo tienes que escribir donde deseas guardar tus backups y pulsar$rojoC ENTER$blanco"
+			echo -e "$azulC /home/usuario/Documentos/Backups"
+			echo -e "$azulC ~/Documentos/Backups"
+			echo ""
+			echo ""
+			#Entrada de ruta
+			echo -e "$verdeC Guardar en:$rojoC"
+			read entrada
+			echo "$entrada" > "$DirPreferencias/backups.pref"
+			echo ""
+			echo ""
+			clear
+			echo -e "$verdeC Se ha guardado la siguiente ruta:"
+			echo -e "$rojoC$entrada"
 			echo ""
             sleep 2;;
+
+		$(expr $LongitudMenu - 2))
+			clear
+			echo "$Borrar"
+			echo -e "$rojoC Es posible que te pida la clave de administrador para Borrar los archivos de configuración"
+			echo "$(sudo rm -R $DirPreferencias/*)"
+			sleep 3
+			echo "";;
+
+		$(expr $LongitudMenu - 1))
+			clear
+			echo "$RepararPermisos"
+			echo -e "$rojoC Es posible que te pida la clave de administrador para reparar los permisos"
+			echo "$(sudo chmod 777 $DirPreferencias/*)"
+			echo "$(sudo chown "$UsuarioActual":"$UsuarioActual" $DirPreferencias/*)"
+			sleep 3
+			echo "";;
 
 		$LongitudMenu)#Salir de este Menú
 			clear
