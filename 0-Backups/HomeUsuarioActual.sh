@@ -51,7 +51,7 @@ echo -e "2 ... Para comenzar"
 sleep 1
 echo -e "1 ... Para comenzar"
 sleep 1
-tar -cvpjf "$Preferencias/backup_$UsuarioActual&_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2" --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=.trash --exclude=1-MOUNT --exclude=.cache --exclude=.trash --exclude=Documentos --exclude=Imágenes /home/$UsuarioActual
+tar -cvpjf "$Preferencias/backup_"$UsuarioActual"_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2" --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=.trash --exclude=1-MOUNT --exclude=.cache --exclude=.trash --exclude=Documentos --exclude=Imágenes /home/$UsuarioActual
 
 #Finalizando
 echo -e "El script Finaliza"
