@@ -5,6 +5,7 @@ UsuarioActual=$(whoami)
 DirInstalacion="Documentos/0-Scripts_2"
 LugarDeInstalacion="/home/$UsuarioActual/$DirInstalacion"
 DirPreferencias="$LugarDeInstalacion/PREFERENCIAS/backups.pref"
+Preferencias="$(cat $DirPreferencias)"
 
 ##### CONSTANTES COLORES #####
 negro="\033[0;30m"
@@ -28,12 +29,30 @@ parpadeoON="\E[5m"
 parpadeoOFF="\E[0m"
 resaltar="\E[7m"
 
-#Copia de Seguridad para el usuario actual
-echo -e "El lugar para la instalación elegido es $GuardarBackup"
-cat $DirPreferencias
+#Mostrando información sobre donde se efectuará la copia de seguridad
+echo -e "El lugar para el Backup elegido es $Preferencias"
+sleep 2
 
+echo -e "La ruta completa y el nombre para el BACKUP es:"
+echo "$Preferencias/backup_"$UsuarioActual"_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2"
+sleep 2
 
+#Creando la copia de seguridad
+echo -e "La copia de seguridad comenzará a crearse en 5 segundos"
+echo -e "Puedes pulsar control+C para impedir que comience"
+sleep 1
+echo -e "5 ... Para comenzar"
+sleep 1
+echo -e "4 ... Para comenzar"
+sleep 1
+echo -e "3 ... Para comenzar"
+sleep 1
+echo -e "2 ... Para comenzar"
+sleep 1
+echo -e "1 ... Para comenzar"
+sleep 1
+tar -cvpjf "$Preferencias/backup_$UsuarioActual&_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2" --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=.trash --exclude=1-MOUNT --exclude=.cache --exclude=.trash --exclude=Documentos --exclude=Imágenes /home
 
-
-#tar -cvpjf "/media/usuario/1T DATOS USB/12 - Save DEBIAN/backup.tar.bz2" --exclude=/proc --exclude=lost+found --exclude=/backup.tar.bz2 --exclude=/mnt --exclude=/sys --exclude=/media --exclude=/var/log --exclude=/tmp /
-
+#Finalizando
+echo -e "El script Finaliza"
+echo -e "Comprueba que se ha realizado correctamente el BACKUP en el directorio elegido: $Preferencias"
