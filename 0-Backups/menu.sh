@@ -6,10 +6,16 @@ MenuActual='Menú Copias de Seguridad'
 Menu0='Generar todas las copias de Seguridad'
 Menu1='Crear Backup del directorio "home"'
 Menu2='Crear Backup de raíz del sistema "/" excluyendo directorio de usuario'
-Menu3='Crear Backup solo del usuario actual (Con el que ejecutamos este script)'
+Menu3='Crear Backup solo del usuario actual (Con el que ejecutamos el menú)'
 Salir='Salir de este Menú'
 
 NoFunca="(No hace nada aún)"
+
+UsuarioActual=$(whoami)
+DirInstalacion="Documentos/0-Scripts_2"
+LugarDeInstalacion="/home/$UsuarioActual/$DirInstalacion"
+DirPreferencias="$LugarDeInstalacion/PREFERENCIAS"
+version="$(cat $LugarDeInstalacion/version)"
 
 ##### CONSTANTES COLORES #####
 negro="\033[0;30m"
@@ -39,7 +45,7 @@ clear
 while :
 	do
 		echo ""
-		echo -e "                 $amarillo $MenuActual "
+        echo -e "             $amarillo $MenuActual $rojoC   $version"
 		echo ""
 		echo -e "   $rojoC 0)  $verdeC $Menu0"
 		echo -e "   $rojoC 1)  $verdeC $Menu1 "
@@ -47,14 +53,13 @@ while :
 		echo -e "   $rojoC 3)  $verdeC $Menu3 "
 
 #Último Menú para salir:
-		echo -e "   $rojoC $LongitudMenu) $magentaC $Salir"
+		echo -e "   $rojoC $LongitudMenu) $magentaC  $Salir"
 		echo ""
 		echo ""
 
 #Comentario impreso en pantalla donde muestra opciones disponibles a elegir
 		echo -e "                   $azulC Elige una opción  (0 - $LongitudMenu)"
-		echo ""
-		echo ""
+		echo -e "$blanco"
 
 	read entrada
 	case $entrada in
@@ -97,7 +102,7 @@ while :
 			echo ""
 			echo -e "$rojoC Pulsar $amarillo $entrada  $rojoC no va a conseguir hacer nada porque no está en la lista pedazo de melón.
 
-¿Eso son dedos o es un catálogo de salsichas?, pulsa solo un número del$amarillo 1$rojoC al$amarillo 8"
+¿Eso son dedos o es un catálogo de salsichas?, pulsa solo un número del$amarillo 0$rojoC al$amarillo $LongitudMenu"
 			echo ""
 			echo ""
 			echo ""
