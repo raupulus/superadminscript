@@ -30,32 +30,38 @@ parpadeoOFF="\E[0m"
 resaltar="\E[7m"
 
 #Mostrando información sobre donde se efectuará la copia de seguridad
-echo -e "El lugar para el Backup elegido es $Preferencias"
+echo ""
+echo -e "$verdeC El lugar para el Backup elegido es$rojoC $Preferencias"
+echo ""
 sleep 2
 
-echo -e "La ruta completa y el nombre para el BACKUP es:"
-echo "$Preferencias/backup_HOME_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2"
+echo -e "$verdeC La ruta completa y el nombre para el BACKUP es:$grisC"
+echo -e "$rojoC$Preferencias/backup_"$UsuarioActual"_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2$grisC"
+echo ""
 sleep 2
 
 #Creando la copia de seguridad
-echo -e "La copia de seguridad comenzará a crearse en 5 segundos"
-echo -e "Puedes pulsar control+C para impedir que comience"
+echo -e "$rojoC La copia de seguridad comenzará a crearse en 5 segundos$grisC"
+echo -e "$verdeC Puedes pulsar$rojoC control+C$verdeC para impedir que comience$grisC"
 sleep 1
-echo -e "5 ... Para comenzar"
+echo -e "$rojoC 5 ...$amarillo Para comenzar"
 sleep 1
-echo -e "4 ... Para comenzar"
+echo -e "$rojoC 4 ...$amarillo Para comenzar"
 sleep 1
-echo -e "3 ... Para comenzar"
+echo -e "$rojoC 3 ...$amarillo Para comenzar"
 sleep 1
-echo -e "2 ... Para comenzar"
+echo -e "$rojoC 2 ...$amarillo Para comenzar"
 sleep 1
-echo -e "1 ... Para comenzar"
+echo -e "$rojoC 1 ...$amarillo Para comenzar"
 sleep 1
+echo -e "$blanco"
 tar -cvpjf "$Preferencias/backup_HOME_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2" --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=.trash --exclude=1-MOUNT --exclude=.cache --exclude=.trash --exclude=Documentos --exclude=Imágenes /home
+echo ""
 
 #Finalizando
-echo -e "El script Finaliza"
-echo -e "Comprueba que se ha realizado correctamente el BACKUP en el directorio elegido: $Preferencias"
+echo -e "$magentaC El script Finaliza$grisC"
+echo -e "$verdeC Comprueba que se ha realizado correctamente el BACKUP en el directorio elegido: $rojoC$Preferencias$grisC"
+echo -e "$blanco"
 
 #DESCOMPRIMIR
 #Si utilizaste el método de de compresión gzip:
