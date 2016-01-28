@@ -1,13 +1,15 @@
 #!/bin/bash
 
 #Variables Generales
-LongitudMenu='4';
-MenuActual='Menú Copias de Seguridad';
-Menu0='Generar todas las copias de Seguridad';
-Menu1='Crear Backup del directorio "home"';
-Menu2='Crear Backup de raíz del sistema "/" excluyendo directorio de usuario';
-Menu3='Crear Backup solo del usuario actual (Con el que ejecutamos este script)';
-Salir='Salir de este Menú';
+LongitudMenu='4'
+MenuActual='Menú Copias de Seguridad'
+Menu0='Generar todas las copias de Seguridad'
+Menu1='Crear Backup del directorio "home"'
+Menu2='Crear Backup de raíz del sistema "/" excluyendo directorio de usuario'
+Menu3='Crear Backup solo del usuario actual (Con el que ejecutamos este script)'
+Salir='Salir de este Menú'
+
+NoFunca="(No hace nada aún)"
 
 ##### CONSTANTES COLORES #####
 negro="\033[0;30m"
@@ -31,75 +33,75 @@ parpadeoON="\E[5m"
 parpadeoOFF="\E[0m"
 resaltar="\E[7m"
 
-clear;
+clear
 
 # Menu
 while :
 	do
-		echo "";
-		echo -e "                 $amarillo $MenuActual ";
-		echo "";
-		echo -e "   $rojoC 0)  $verdeC $Menu0";
-		echo -e "   $rojoC 1)  $verdeC $Menu1 ";
-		echo -e "   $rojoC 2)  $verdeC $Menu2 ";
-		echo -e "   $rojoC 3)  $verdeC $Menu3 ";
+		echo ""
+		echo -e "                 $amarillo $MenuActual "
+		echo ""
+		echo -e "   $rojoC 0)  $verdeC $Menu0"
+		echo -e "   $rojoC 1)  $verdeC $Menu1 "
+		echo -e "   $rojoC 2)  $verdeC $Menu2 "
+		echo -e "   $rojoC 3)  $verdeC $Menu3 "
 
 #Último Menú para salir:
-		echo -e "   $rojoC $LongitudMenu) $magentaC $Salir";
-		echo "";
-		echo "";
+		echo -e "   $rojoC $LongitudMenu) $magentaC $Salir"
+		echo ""
+		echo ""
 
 #Comentario impreso en pantalla donde muestra opciones disponibles a elegir
-		echo -e "                   $azulC Elige una opción  (0 - $LongitudMenu)";
-		echo "";
-		echo "";
+		echo -e "                   $azulC Elige una opción  (0 - $LongitudMenu)"
+		echo ""
+		echo ""
 
 	read entrada
 	case $entrada in
 
 		0)#Generar todas las copias de Seguridad
-			clear;
-			echo "$Menu0";
-			sleep 1;
+			clear
+			echo "$Menu0"
+			sleep 1
 			sh all_Backups.sh;;
 
 		1)#Crear Backup del directorio "home"
-			clear;
-			echo "$Menu1";
-			sleep 1;
+			clear
+			echo "$Menu1"
+			sleep 1
 			sh BackupHome.sh;;
 
 		2)#Crear Backup de la raíz del sistema "/" excluyendo directorio de usuarios
-			clear;
-			echo "$Menu2";
-			sleep 1;
+			clear
+			echo "$Menu2"
+			sleep 1
 			sh BackupSystem.sh;;
 
 		3)#Crear Backup del directorio "home"
-			clear;
-			echo "$Menu3";
-			sleep 1;
+			clear
+			echo "$Menu3"
+			sleep 1
 			sh HomeUsuarioActual.sh;;
 
 		$LongitudMenu)#Salir de este Menú
-			clear;
+			clear
 			echo -e "$grisC"
-			echo "Nos vemos, ya volverás....";
+			echo "Nos vemos, ya volverás...."
 			echo ""
 			exit 1;;
 
 		*)#Cualquier otra opción que no sea las anteriores
-			clear;
-			echo "";
-			echo -e "                      $rojoC ATENCIÓN: ERROR y de los chungos";
-			echo "";
+			clear
+			echo ""
+			echo -e "                      $rojoC ATENCIÓN: ERROR y de los chungos"
+			echo ""
 			echo -e "$rojoC Pulsar $amarillo $entrada  $rojoC no va a conseguir hacer nada porque no está en la lista pedazo de melón.
 
-¿Eso son dedos o es un catálogo de salsichas?, pulsa solo un número del$amarillo 1$rojoC al$amarillo 8";
-			echo "";
-			echo "";
-			echo "";
-			echo -e "               $azulC Pulsa sobre cualquier tecla para volver al menú...";
+¿Eso son dedos o es un catálogo de salsichas?, pulsa solo un número del$amarillo 1$rojoC al$amarillo 8"
+			echo ""
+			echo ""
+			echo ""
+			echo -e "               $azulC Pulsa sobre cualquier tecla para volver al menú..."
 			echo -e "$grisC"
 	read foo;;
 esac
