@@ -4,7 +4,7 @@
 ./1-Hacker/0-wifi/goyscript/wps
 ./1-Hacker/0-wifi/goyscript/ -> AÑADIR TODOS LOS DIRECTORIOS TEMPORALES
 ./1-Hacker/0-wifi/wpa/ObtenerHandshake/handshaker/handshake/*
-
+./PREFERENCIAS
 
 
 
