@@ -84,7 +84,7 @@ while :
 
 #Comentario impreso en pantalla donde muestra opciones disponibles a elegir
 		echo -e "                   $azulC Elige una opción  (0 - $LongitudMenu)"
-		echo ""
+		echo -e "$blanco"
 
 	read entrada
 	case $entrada in
