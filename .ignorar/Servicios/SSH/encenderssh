@@ -1,8 +1,0 @@
-#!/bin/bash
-clear
-sleep 1
-service ssh start
-sleep 1
-echo Parando SSH ahora podrás ver el estado:
-sleep 1
-service ssh status
