@@ -6,6 +6,14 @@ navegador=""
 maxPaginasSimultaneas=""
 sitioweb=""
 contador="0"
+logo="
+                       __                      _    _
+                      / _| _ __  _   _  _ __  | |_ (_) ____
+                     | |_ | '__|| | | || '_ \ | __|| ||_  /
+                     |  _|| |   | |_| || | | || |_ | | / /
+                     |_|  |_|    \__, ||_| |_| \__||_|/___|
+                                 |___/
+"
 
 ##### CONSTANTES COLORES #####
 negro="\033[0;30m"
@@ -32,22 +40,42 @@ resaltar="\E[7m"
 clear
 
 #Pedir introducir las veces que se abrirá la página
-echo -e "$verdeC Selecciona el número de veces que se visitará la página$amarillo (Tiene que ser un número)$blanco"
+echo -e "$rojoC$logo$blanco"
+echo -e "$verdeC Selecciona el número de veces que se visitará la página$blanco"
+echo -e "              $amarillo (Tiene que ser un número)$blanco"
 read repeticiones
 clear
-echo -e "$verdeC Escribe la página web o la dirección IP$amarillo (por ejemplo: www.laguialinux.es)$blanco"
+
+#Pedir la dirección de la página a visitar
+echo -e "$rojoC$logo$blanco"
+echo -e "$verdeC Escribe la página web o la dirección IP$blanco"
+echo -e "    $amarillo (por ejemplo: www.laguialinux.es)$blanco"
 read sitioweb
 clear
-echo -e "$verdeC Cuantas páginas quieres abrir a la vez$amarillo (recomiendo 10 si no lo sabes)$blanco"
+
+#Pedir las páginas que se abrirán a la vez
+echo -e "$rojoC$logo$blanco"
+echo -e "$verdeC Cuantas páginas quieres abrir a la vez$blanco"
+echo -e "   $amarillo (recomiendo 10 si no lo sabes)$blanco"
 read maxPaginasSimultaneas
 clear
-echo -e "$verdeC Selecciona un navegador para realizar las pruebas$amarillo (Por supuesto tiene que estar instalado)$blanco"
-echo -e "1 - Chrome"
-echo -e "2 - Chromium"
-echo -e "3 - Firefox"
-echo -e "4 - Opera"
-echo -e "5 - Iceweasel"
-echo -e "6 - Epiphany"
+
+#Seleccionar navegador
+echo -e "$rojoC$logo$blanco"
+echo ""
+echo -e "          $verdeC Selecciona un navegador$blanco"
+echo ""
+echo -e "                 $rojoC 1$azulC - Chrome$blanco"
+echo -e "                 $rojoC 2$azulC - Chromium$blanco"
+echo -e "                 $rojoC 3$azulC - Firefox$blanco"
+echo -e "                 $rojoC 4$azulC - Opera$blanco"
+echo -e "                 $rojoC 5$azulC - Iceweasel$blanco"
+echo -e "                 $rojoC 6$azulC - Epiphany$blanco"
+echo ""
+echo -e "       $verdeC Selecciona un navegador para realizar las pruebas$blanco"
+echo -e "              $amarillo (Por supuesto tiene que estar$rojoC instalado$amarillo)$blanco"
+echo ""
+echo -e "$verdeC A continuación escribe el número de la opción elegida:$blanco"
 read navegadorelegido
 	case $navegadorelegido in
 		1)
@@ -63,22 +91,30 @@ read navegadorelegido
 		6)
 			navegador="epiphany";;
 		*)
-			echo -e"$rojoC No existe esa opción$blanco"
+			echo ""
+			echo -e"$rojoC          No existe esa opción$blanco"
+			echo ""
 			exit 1;;
 	esac
 clear
 
-echo -e "$verdeC Se realizarán $rojoC$repeticiones$verdeC conexiones a la página web $rojoC$sitioweb$blanco"
-echo -e "$verdeC Pero a la vez solo se abriran $rojoC$maxPaginasSimultaneas$blanco"
-echo -e "$verdeC Para ello se utilizará el navegador $rojoC$navegador$blanco"
+#Resumen de lo que se realizará
+echo -e "$rojoC$logo$blanco"
 echo ""
-echo -e "$amarillo Pulsa cualquier tecla si todo está correcto o$rojoC Control+C$amarillo para salir$blanco"
+echo -e "$verdeC   Se realizarán $rojoC$repeticiones$verdeC conexiones a la página web $rojoC$sitioweb$blanco"
+echo -e "$verdeC   Pero a la vez solo se abriran $rojoC$maxPaginasSimultaneas$blanco"
+echo -e "$verdeC   Para ello se utilizará el navegador $rojoC$navegador$blanco"
+echo ""
+echo ""
+echo -e "$amarillo Pulsa$rojoC Intro$amarillo si todo está correcto o$rojoC Control+C$amarillo para salir$blanco"
 read foo
 clear
 
-echo -e "$rojoC Realizando operaciones$blanco"
+#Ejecución
+echo -e "$rojoC$logo$blanco"
+echo -e "$rojoC            Realizando operaciones$blanco"
 while [ $contador -lt $( expr $repeticiones / $maxPaginasSimultaneas ) ]; do
-	echo "El contador es $contador"
+	echo -e "$verdeC El contador actual es $contador"
 	echo ""
 		ContadorSimultaneo="0"
 		while [ $ContadorSimultaneo -lt $maxPaginasSimultaneas ]; do
@@ -86,9 +122,22 @@ while [ $contador -lt $( expr $repeticiones / $maxPaginasSimultaneas ) ]; do
 			let ContadorSimultaneo=ContadorSimultaneo+1
 		done
 	sleep 8
-	#contador=$( expr $contador + 1 )
 	let contador=contador+1
 	killall $navegador
 	sleep 1
 	clear
+	echo -e "$rojoC$logo$blanco"
 done
+
+#Finalizando
+clear
+echo -e "$rojoC$logo$blanco"
+echo ""
+echo -e "$rojoC Se ha terminado el script$blanco"
+echo -e "$rojoC Puedes volver a ejecutarlo si asi lo deseas$blanco"
+echo ""
+echo -e "$amarillo      Hasta la próxima$blanco"
+echo ""
+echo ""
+
+exit 1
