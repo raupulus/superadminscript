@@ -80,8 +80,15 @@ read navegadorelegido
 	case $navegadorelegido in
 		1)
 			navegador="chrome";;
-		2)
-			navegador="chromium";;
+		2)#Condicional if: -d para comprobar si existe dir y -f para archivos -x permisos de ejecución
+			if [ -f /usr/bin/chromium ]; then
+				navegador="chromium"
+			elif [ -f /usr/bin/chromium-browser ]; then
+				navegador="chromium-browser"
+			else
+				echo -e "$rojoC Se sale porque no está instalado el navegador elegido$blanco"
+				exit 1
+			fi;;
 		3)
 			navegador="firefox";;
 		4)
@@ -92,7 +99,7 @@ read navegadorelegido
 			navegador="epiphany";;
 		*)
 			echo ""
-			echo -e"$rojoC          No existe esa opción$blanco"
+			echo -e "$rojoC          No existe esa opción$blanco"
 			echo ""
 			exit 1;;
 	esac
@@ -119,10 +126,10 @@ while [ $contador -lt $( expr $repeticiones / $maxPaginasSimultaneas ) ]; do
 		ContadorSimultaneo="0"
 		while [ $ContadorSimultaneo -lt $maxPaginasSimultaneas ]; do
 			$navegador $sitioweb&
-			let ContadorSimultaneo=ContadorSimultaneo+1
+			ContadorSimultaneo=$( expr $ContadorSimultaneo + 1 )
 		done
 	sleep 8
-	let contador=contador+1
+	contador=$( expr $contador + 1 )
 	killall $navegador
 	sleep 1
 	clear
