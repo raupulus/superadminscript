@@ -71,9 +71,9 @@ if [ -d $LugarDeInstalacion ]
 	then
 		echo -e "Existe el lugar de instalación, procediendo a borrarlo"
 		sleep 1
-		rm -R -f $LugarDeInstalacion
+		sudo rm -R -f $LugarDeInstalacion
 		mkdir $LugarDeInstalacion
-		echo -e "$LugarDeInstalacion ha sido limpiado"
+		sudo echo -e "$LugarDeInstalacion ha sido limpiado"
 		sleep 1
 	else
 		echo -e "El destino de la instalación no existe, se procede a crearlo"
@@ -94,7 +94,7 @@ echo -e "Creando lanzador mediante el comando 'menu' se necesitará ser root"
 sudo touch /bin/menu
 sudo echo "" > /bin/menu
 sudo echo "#!/bin/bash" >> /bin/menu
-sudo echo "sh ~/$DirInstalacion/menu.sh" >> /bin/menu
+echo "sh ~/$DirInstalacion/menu.sh" >> /bin/menu
 sudo chmod 777 "/bin/menu"
 sleep 1
 echo -e "Ahora puedes acceder al Programa accediendo con el usuario que lo hayas instalado (puedes instalarlo con varios usuarios) a un terminal y escribiendo simplemente la palabra 'menu'"
