@@ -47,7 +47,7 @@ if [ $SHELL == "/bin/bash" ]
 		sudo apt-get update
 		sudo apt-get install bash
 		sudo rm /bin/sh
-		sudo ln -s /bin/sh /bin/bash
+		sudo ln -s /bin/bash /bin/sh
 		sudo usermod -s /bin/bash $UsuarioActual
 fi
 
