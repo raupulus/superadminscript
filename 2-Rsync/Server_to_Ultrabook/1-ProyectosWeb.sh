@@ -1,4 +1,4 @@
 #!/bin/bash
 #Sincronizar carpeta Proyectos WEB
 
-rsync -av --delete --progress root@172.18.1.1:/media/nerviozzo/DATOS_2TB/1\\\ -\\\ Proyectos\\\ WEB/ /home/fryntiz/1-MOUNT/DATOS/1\ -\ Proyectos\ WEB/
+rsync -av --delete --progress root@172.18.1.1:/media/fryntiz/DATOS_2TB/1\\\ -\\\ Proyectos\\\ WEB/ /home/fryntiz/1-MOUNT/DATOS/1\ -\ Proyectos\ WEB/
