@@ -29,5 +29,5 @@ while [ $actual -lt $total ]; do
 	let actual=actual+1
 	echo "terminado"
 done
-
+172.18.1.1:/home/fryntiz/1-MOUNT/DATOS_2TB/12-Otros/;/home/fryntiz/1-MOUNT/DATOS/12-Otros/
 exit 0
