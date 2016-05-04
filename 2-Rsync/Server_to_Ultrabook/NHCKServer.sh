@@ -15,7 +15,6 @@ comando="rsync -av --delete --progress"
 #Usuarios y Rutas
 usuarioRemoto="$USERNAME"
 usuarioLocal="$USERNAME"
-dir="$usuarioRemoto@${arrayDir[$actual]}"
 
 #DeBUG
 echo "Longitud de array $total"
@@ -24,9 +23,10 @@ echo $dir
 
 while [ $actual -lt $total ]; do
 	echo "$actual"
-	echo "$comando $dir"
-	$comando $dir
+	#echo "$comando $usuarioRemoto@${arrayDir[$actual]}"
+	"$comando $usuarioRemoto@${arrayDir[$actual]}"
 	let actual=actual+1
 	echo "terminado"
 done
 exit 0
+###Este script tiene un error a la hora de pasar las preferencias al array ya que lo mete todo en la misma linea y la longitud del array es 1 siempre. El resto parece estar bien
