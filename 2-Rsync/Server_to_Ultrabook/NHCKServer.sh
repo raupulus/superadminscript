@@ -10,7 +10,7 @@ actual="0"
 total=${#arrayDir[@]}
 
 #Comando Rsync con opciones
-comando="rsync -av --delete --progress"
+comando="rsync -e ssh -avlz --stats --delete --progress --exclude .*"
 
 #Usuarios y Rutas
 usuarioRemoto="$USERNAME"
