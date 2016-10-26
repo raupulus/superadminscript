@@ -19,13 +19,15 @@ echo "comenzando"
 
 ./Server_to_Ultrabook/9-PersonalizarLinux.sh
 
-./Server_to_Ultrabook/10-ISOS.sh
-
 ./Server_to_Ultrabook/11-Programas.sh
 
-./Server_to_Ultrabook/12-Otros.sh
+./Server_to_Ultrabook/11-Drivers.sh
 
-./Server_to_Ultrabook/13-RaspberryPI.sh
+./Server_to_Ultrabook/12-ISOS.sh
+
+./Server_to_Ultrabook/13-NHCK.sh
+
+./Server_to_Ultrabook/14-RaspberryPI.sh
 
 #./Server_to_Ultrabook/home-proyectos-video.sh
 #./Ultrabook_to_NAS/home-proyectos-video.sh
