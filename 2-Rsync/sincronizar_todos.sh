@@ -3,19 +3,17 @@
 echo "comenzando"
 ./Server_to_Ultrabook/1-Trabajo.sh
 
-./Server_to_Ultrabook/1-ProyectosWeb.sh
+./Server_to_Ultrabook/2-ProyectosWeb.sh
 
-./Server_to_Ultrabook/2-LibreriasDiseñoGrafico.sh
+./Server_to_Ultrabook/3-MisPaginasWebs.sh
 
-./Server_to_Ultrabook/3-LibreriasWeb.sh
+./Server_to_Ultrabook/4-LibreriasWeb.sh
 
-./Server_to_Ultrabook/4-MisPaginasWebs.sh
+./Server_to_Ultrabook/5-LibreriasDiseñoGrafico.sh
 
-./Server_to_Ultrabook/5-ArchivosPersonales.sh
+./Server_to_Ultrabook/6-MisApuntes.sh
 
-./Server_to_Ultrabook/6-MiBiblioteca.sh
-
-./Server_to_Ultrabook/7-MisApuntes.sh
+./Server_to_Ultrabook/7-ArchivosPersonales.sh
 
 ./Server_to_Ultrabook/8-Multimedia.sh
 
