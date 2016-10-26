@@ -1,6 +1,8 @@
 #!/bin/bash
 #Sincronizar todas las carpetas con los scripts para rsync de este directorio
 echo "comenzando"
+./Server_to_Ultrabook/1-Trabajo.sh
+
 ./Server_to_Ultrabook/1-ProyectosWeb.sh
 
 ./Server_to_Ultrabook/2-LibreriasDiseñoGrafico.sh
