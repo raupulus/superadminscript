@@ -47,22 +47,13 @@ else
 	exit 1
 fi
 
-#sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password /home/fryntiz/8_Backups/0-TMP/$nombreBackup.7z -x{!home,!tmp,!var/log/,!proc,!mnt,!sys/,!media/,!run/media/,!dev/pts,!run/user/1000/} -xr{!lost+found,!.cache,!.trash} /
-
-#sudo chown $UsuarioActual:$UsuarioActual $nombreBackup.7z
-#mv ~/8_Backups/0-TMP/$nombreBackup.7z ~/8_Backups/2_PC_Sobremesa/Raíz/$nombreBackup.7z
-
-
-sudo tar -cvpjf  $NombreBackup --exclude=/proc --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=/mnt --exclude=/sys/ --exclude=/media --exclude=.cache --exclude=.trash --exclude=/run/media --exclude=/var/log --exclude=/tmp --exclude=/var/tmp --exclude=/home --exclude=/run/media --exclude=/run/log --exclude=/dev/pts --exclude=.Trash /home
-
-sudo chown $UsuarioActual:$UsuarioActual $NombreBackup
+sudo tar -cvpjf  $NombreBackup --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=.cache --exclude=.trash --exclude=.Trash --exclude=0-MOUNT --exclude=1-MOUNT --exclude=1_GIT --exclude=2_Bases_de_Datos --exclude=3_Librerías --exclude=4_Programas --exclude=5_Entornos_de_Trabajo --exclude=6_Máquinas_Virtuales --exclude=7_Mis_Proyectos --exclude=8_Backups --exclude=9_Dropbox --exclude=10_GoogleDrive --exclude=11_CloudStation --exclude=12_Pentesting --exclude=Descargas --exclude=Documentos --exclude=Imágenes --exclude=NHCK --exclude=Plantillas --exclude=Vídeos --exclude=.PlayOnLinux/wineprefix --exclude=.local/share/Trash /home
 
 sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password $NombreBackup $NombreBackupCifrado
+sudo chown $UsuarioActual:$UsuarioActual $NombreBackup
 rm $NombreBackup
 mv $NombreBackupCifrado "$Preferencias/2_PC_Sobremesa/Raíz/"
 
 #Finalizando
 echo -e "$magentaC Se ha completado la copia de seguridad$grisC"
 echo -e "$grisC"
-
-#tar -cvpjf "$Preferencias/backup_HOME_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2" --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=.trash --exclude=1-MOUNT --exclude=.cache --exclude=.trash --exclude=Documentos --exclude=Imágenes /home
