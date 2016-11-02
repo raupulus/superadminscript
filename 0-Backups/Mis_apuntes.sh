@@ -2,8 +2,7 @@
 
 #Variables Generales
 password=""
-excluirDeBackup="-x{!home,!tmp,!var/log/,!proc,!mnt,!sys/,!media/,!run/media/,!dev/pts,!run/user/1000/} -xr{!lost+found,!.cache,!.trash}"
-nombreBackup="BACKUP_SYSTEM_ROOT_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`"
+nombreBackup="Mis_Apuntes`date +%y`_MES`date +%b`_DIA`date +%d`"
 UsuarioActual=$(whoami)
 DirInstalacion="Documentos/0-Scripts_2"
 LugarDeInstalacion="/home/$UsuarioActual/$DirInstalacion"
@@ -42,18 +41,10 @@ else
 	exit 1
 fi
 
-cd /
+7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password ~/8_Backups/0-TMP/$nombreBackup.7z -x{!lost+found,!.Trash*} /media/fryntiz/DATOS_2TB/6-Mis_Apuntes
 
-sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password /home/fryntiz/8_Backups/0-TMP/$nombreBackup.7z -x{!home,!tmp,!var/log/,!proc,!mnt,!sys/,!media/,!run/media/,!dev/pts,!run/user/1000/} -xr{!lost+found,!.cache,!.trash} /
+mv ~/8_Backups/0-TMP/$nombreBackup.7z ~/8_Backups/Mis_Apuntes/$nombreBackup.7z
 
-sudo chown $UsuarioActual:$UsuarioActual $nombreBackup.7z
-mv ~/8_Backups/0-TMP/$nombreBackup.7z ~/8_Backups/2_PC_Sobremesa/Raíz/$nombreBackup.7z
-
-whoami
-echo $UsuarioActual
 #Finalizando
 echo -e "$magentaC Se ha completado la copia de seguridad$grisC"
 echo -e "$grisC"
-
-
-#tar -cvpjf "$Preferencias/backup_SYSTEM_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2" --exclude=/proc --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=/mnt --exclude=/sys --exclude=/media --exclude=.cache --exclude=.trash --exclude=/run/media --exclude=/var/log --exclude=/tmp --exclude=/home /

@@ -1,6 +1,9 @@
 #!/bin/bash
 
 #Variables Generales
+password=""
+excluirDeBackup="-x{!0-MOUNT,!1_GIT,!1-MOUNT,!2_Bases_de_Datos,!3_Librerías,!4_Programas,!5_Entornos_de_Trabajo,!6_Máquinas_Virtuales,!7_Mis_Proyectos,!Backups,!9_Dropbox,!10_GoogleDrive,!11_CloudStation,!12_Pentesting,!Descargas,!Documentos,!Imágenes,!NHCK,!Plantillas,!Vídeos} -xr{!lost+found,!.cache,!.trash}"
+nombreBackup="BACKUP_HOME_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`"
 UsuarioActual=$(whoami)
 DirInstalacion="Documentos/0-Scripts_2"
 LugarDeInstalacion="/home/$UsuarioActual/$DirInstalacion"
@@ -8,57 +11,48 @@ DirPreferencias="$LugarDeInstalacion/PREFERENCIAS/backups.pref"
 Preferencias="$(cat $DirPreferencias)"
 
 ##### CONSTANTES COLORES #####
-negro="\033[0;30m"
-rojo="\033[0;31m"
-verde="\033[0;32m"
-marron="\033[0;33m"
-azul="\033[0;34m"
-magenta="\033[0;35m"
-cyan="\033[01;36m"
 grisC="\033[0;37m"
-gris="\033[1;30m"
 rojoC="\033[1;31m"
 verdeC="\033[1;32m"
-amarillo="\033[1;33m"
 azulC="\033[1;34m"
 magentaC="\033[1;35m"
 cyanC="\033[1;36m"
 blanco="\033[1;37m"
-subrayar="\E[4m"
-parpadeoON="\E[5m"
-parpadeoOFF="\E[0m"
-resaltar="\E[7m"
+amarillo="\033[1;33m"
 
-#Mostrando información sobre donde se efectuará la copia de seguridad
-echo ""
-echo -e "$verdeC El lugar para el Backup elegido es$rojoC $Preferencias"
-echo ""
-sleep 2
+clear
+echo -e "$rojoC     Introduce la contraseña$verdeC"
+read entrada
+password1=$entrada
 
-echo -e "$verdeC La ruta completa y el nombre para el BACKUP es:$grisC"
-echo -e "$rojoC$Preferencias/backup_"$UsuarioActual"_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2$grisC"
-echo ""
-sleep 2
+clear
+echo -e "$rojoC     Vuelve a introducir la contraseña$verdeC"
+read entrada1
+password2=$entrada1
+echo -e "$grisC"
+if [ $password1 = $password2 ]
+then
+	echo -e "$amarillo Las dos claves coinciden"
+	echo -e "$azulC Comenzará el Backup$grisC"
+	password=$password1
+	sleep 2
+else
+	echo -e "$amarillo No coinciden las dos contraseñas"
+	echo -e " Vuelve a intentarlo $grisC"
+	exit 1
+fi
 
-#Creando la copia de seguridad
-echo -e "$rojoC La copia de seguridad comenzará a crearse en 5 segundos$grisC"
-echo -e "$verdeC Puedes pulsar$rojoC control+C$verdeC para impedir que comience$grisC"
-sleep 1
-echo -e "$rojoC 5 ...$amarillo Para comenzar"
-sleep 1
-echo -e "$rojoC 4 ...$amarillo Para comenzar"
-sleep 1
-echo -e "$rojoC 3 ...$amarillo Para comenzar"
-sleep 1
-echo -e "$rojoC 2 ...$amarillo Para comenzar"
-sleep 1
-echo -e "$rojoC 1 ...$amarillo Para comenzar"
-sleep 1
-echo -e "$blanco"
-tar -cvpjf "$Preferencias/backup_"$UsuarioActual"_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2" --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=.trash --exclude=1-MOUNT --exclude=.cache --exclude=.trash --exclude=Documentos --exclude=Imágenes /home/$UsuarioActual
-echo ""
+sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password /home/fryntiz/8_Backups/0-TMP/$nombreBackup.7z -x{!0-MOUNT,!1_GIT,!1-MOUNT,!2_Bases_de_Datos,!3_Librerías,!4_Programas,!5_Entornos_de_Trabajo,!6_Máquinas_Virtuales,!7_Mis_Proyectos,!8_Backups,!9_Dropbox,!10_GoogleDrive,!11_CloudStation,!12_Pentesting,!Descargas,!Documentos,!Imágenes,!NHCK,!Plantillas,!Vídeos,!.PlayOnLinux/wineprefix,!.local/share/Trash} -xr{!lost+found,!.cache,!.trash} /home/fryntiz/
 
+sudo chown $UsuarioActual:$UsuarioActual $nombreBackup.7z
+mv ~/8_Backups/0-TMP/$nombreBackup.7z ~/8_Backups/2_PC_Sobremesa/Raíz/$nombreBackup.7z
+
+whoami
+echo $UsuarioActual
 #Finalizando
-echo -e "$magentaC El script Finaliza$grisC"
-echo -e "$verdeC Comprueba que se ha realizado correctamente el BACKUP en el directorio elegido: $rojoC$Preferencias$grisC"
-echo -e "$blanco"
+echo -e "$magentaC Se ha completado la copia de seguridad$grisC"
+echo -e "$grisC"
+
+
+#tar -cvpjf "$Preferencias/backup_HOME_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2" --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=.trash --exclude=1-MOUNT --exclude=.cache --exclude=.trash --exclude=Documentos --exclude=Imágenes /home
+#tar -cvpjf "$Preferencias/backup_"$UsuarioActual"_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2" --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=.trash --exclude=1-MOUNT --exclude=.cache --exclude=.trash --exclude=Documentos --exclude=Imágenes /home/$UsuarioActual

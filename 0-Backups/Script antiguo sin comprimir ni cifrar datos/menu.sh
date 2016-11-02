@@ -1,15 +1,12 @@
 #!/bin/bash
 
 #Variables Generales
-LongitudMenu='7'
+LongitudMenu='4'
 MenuActual='Menú Copias de Seguridad'
 Menu0='Generar todas las copias de Seguridad'
 Menu1='Crear Backup del directorio "home"'
-Menu2='Crear Backup de raíz del sistema "/" excluyendo home'
-Menu3='Crear Backup solo del usuario Fryntiz'
-Menu4='Crear Backup directorio TRABAJO'
-Menu5='Crear Backup directorio Mis Apuntes'
-Menu6='Crear Backup Archivos Personales'
+Menu2='Crear Backup de raíz del sistema "/" excluyendo directorio de usuario'
+Menu3='Crear Backup solo del usuario actual (Con el que ejecutamos el menú)'
 Salir='Salir de este Menú'
 
 NoFunca="(No hace nada aún)"
@@ -21,14 +18,26 @@ DirPreferencias="$LugarDeInstalacion/PREFERENCIAS"
 version="$(cat $LugarDeInstalacion/version)"
 
 ##### CONSTANTES COLORES #####
+negro="\033[0;30m"
+rojo="\033[0;31m"
+verde="\033[0;32m"
+marron="\033[0;33m"
+azul="\033[0;34m"
+magenta="\033[0;35m"
+cyan="\033[01;36m"
 grisC="\033[0;37m"
+gris="\033[1;30m"
 rojoC="\033[1;31m"
 verdeC="\033[1;32m"
+amarillo="\033[1;33m"
 azulC="\033[1;34m"
 magentaC="\033[1;35m"
 cyanC="\033[1;36m"
 blanco="\033[1;37m"
-amarillo="\033[1;33m"
+subrayar="\E[4m"
+parpadeoON="\E[5m"
+parpadeoOFF="\E[0m"
+resaltar="\E[7m"
 
 clear
 
@@ -38,13 +47,10 @@ while :
 		echo ""
         echo -e "             $amarillo $MenuActual $rojoC   $version"
 		echo ""
-		echo -e "   $rojoC 0)  $verdeC $Menu0 "
-		echo -e "   $rojoC 1)  $verdeC $Menu1 $NoFunca"
+		echo -e "   $rojoC 0)  $verdeC $Menu0"
+		echo -e "   $rojoC 1)  $verdeC $Menu1 "
 		echo -e "   $rojoC 2)  $verdeC $Menu2 "
 		echo -e "   $rojoC 3)  $verdeC $Menu3 "
-		echo -e "   $rojoC 4)  $verdeC $Menu4 "
-		echo -e "   $rojoC 5)  $verdeC $Menu5 "
-		echo -e "   $rojoC 6)  $verdeC $Menu6 "
 
 #Último Menú para salir:
 		echo -e "   $rojoC $LongitudMenu) $magentaC  $Salir"
@@ -68,8 +74,7 @@ while :
 			clear
 			echo "$Menu1"
 			sleep 1
-			#sh BackupHome.sh;;
-			;;
+			sh BackupHome.sh;;
 
 		2)#Crear Backup de la raíz del sistema "/" excluyendo directorio de usuarios
 			clear
@@ -77,29 +82,11 @@ while :
 			sleep 1
 			sh BackupSystem.sh;;
 
-		3)#Crear Backup del usuario Fryntiz
+		3)#Crear Backup del directorio "home"
 			clear
 			echo "$Menu3"
 			sleep 1
 			sh HomeUsuarioActual.sh;;
-
-		4)#Crear Backup directorio TRABAJO
-			clear
-			echo "$Menu4"
-			sleep 1
-			sh Trabajo.sh;;
-
-		5)#Crear Backup directorio Mis Apuntes
-			clear
-			echo "$Menu5"
-			sleep 1
-			sh Mis_apuntes.sh;;
-
-		6)#Crear Backup Archivos Personales
-			clear
-			echo "$Menu6"
-			sleep 1
-			sh Archivos_Personales.sh;;
 
 		$LongitudMenu)#Salir de este Menú
 			clear
