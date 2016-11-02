@@ -66,6 +66,3 @@ mv $NombreBackupCifrado "$Preferencias/2_PC_Sobremesa/Raíz/"
 #Finalizando
 echo -e "$magentaC Se ha completado la copia de seguridad$grisC"
 echo -e "$grisC"
-
-
-
