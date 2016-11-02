@@ -3,12 +3,17 @@
 #Variables Generales
 password=""
 excluirDeBackup="-x{!home,!tmp,!var/log/,!proc,!mnt,!sys/,!media/,!run/media/,!dev/pts,!run/user/1000/} -xr{!lost+found,!.cache,!.trash}"
-nombreBackup="BACKUP_SYSTEM_ROOT_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`"
+
 UsuarioActual=$(whoami)
-DirInstalacion="Documentos/0-Scripts_2"
+DirInstalacion="Documentos/0-Scripts"
 LugarDeInstalacion="/home/$UsuarioActual/$DirInstalacion"
+
+#Directorio: /home/fryntiz/8_Backups/2_PC_Sobremesa/Raíz
 DirPreferencias="$LugarDeInstalacion/PREFERENCIAS/backups.pref"
 Preferencias="$(cat $DirPreferencias)"
+
+NombreBackup="$Preferencias/0-TMP/backup_SYSTEM_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2"
+NombreBackupCifrado="$Preferencias/backup_SYSTEM_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.7z"
 
 ##### CONSTANTES COLORES #####
 grisC="\033[0;37m"
@@ -44,16 +49,23 @@ fi
 
 cd /
 
-sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password /home/fryntiz/8_Backups/0-TMP/$nombreBackup.7z -x{!home,!tmp,!var/log/,!proc,!mnt,!sys/,!media/,!run/media/,!dev/pts,!run/user/1000/} -xr{!lost+found,!.cache,!.trash} /
+#sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password /home/fryntiz/8_Backups/0-TMP/$nombreBackup.7z -x{!home,!tmp,!var/log/,!proc,!mnt,!sys/,!media/,!run/media/,!dev/pts,!run/user/1000/} -xr{!lost+found,!.cache,!.trash} /
 
-sudo chown $UsuarioActual:$UsuarioActual $nombreBackup.7z
-mv ~/8_Backups/0-TMP/$nombreBackup.7z ~/8_Backups/2_PC_Sobremesa/Raíz/$nombreBackup.7z
+#sudo chown $UsuarioActual:$UsuarioActual $nombreBackup.7z
+#mv ~/8_Backups/0-TMP/$nombreBackup.7z ~/8_Backups/2_PC_Sobremesa/Raíz/$nombreBackup.7z
 
-whoami
-echo $UsuarioActual
+
+sudo tar -cvpjf  $NombreBackup --exclude=/proc/ --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=/mnt --exclude=/sys/ --exclude=/media --exclude=.cache --exclude=.trash --exclude=/run/media --exclude=/var/log --exclude=/tmp --exclude=/home --exclude=/run/media --exclude=/run/log --exclude=/dev/pts --exclude=.Trash /
+
+sudo chown $UsuarioActual:$UsuarioActual $NombreBackup
+
+sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password $NombreBackup $NombreBackupCifrado
+rm $NombreBackup
+mv $NombreBackupCifrado "$Preferencias/2_PC_Sobremesa/Raíz/"
+
 #Finalizando
 echo -e "$magentaC Se ha completado la copia de seguridad$grisC"
 echo -e "$grisC"
 
 
-#tar -cvpjf "$Preferencias/backup_SYSTEM_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2" --exclude=/proc --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=/mnt --exclude=/sys --exclude=/media --exclude=.cache --exclude=.trash --exclude=/run/media --exclude=/var/log --exclude=/tmp --exclude=/home /
+
