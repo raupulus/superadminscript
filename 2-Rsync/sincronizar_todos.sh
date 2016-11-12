@@ -19,7 +19,7 @@ echo "comenzando"
 
 ./Server_to_Ultrabook/9-PersonalizarLinux.sh
 
-./Server_to_Ultrabook/11-Programas.sh
+./Server_to_Ultrabook/10-Programas.sh
 
 ./Server_to_Ultrabook/11-Drivers.sh
 
