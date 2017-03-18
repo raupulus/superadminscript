@@ -51,7 +51,8 @@ sudo tar -cvpjf  $NombreBackup --exclude=lost+found --exclude=backup*.tar.bz2 --
 
 sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password $NombreBackup $NombreBackupCifrado
 sudo chown $UsuarioActual:$UsuarioActual $NombreBackup
-rm $NombreBackup
+sudo chown $UsuarioActual:$UsuarioActual $NombreBackupCifrado
+#rm $NombreBackup
 mv $NombreBackupCifrado "$Preferencias/2_PC_Sobremesa/Raíz/"
 
 #Finalizando
