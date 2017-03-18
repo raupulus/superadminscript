@@ -1,4 +1,4 @@
 #!/bin/bash
-#Sincronizar carpeta Programas
+#Sincronizar directorio NHCK
 
-rsync -av --delete --progress root@172.18.1.1:/media/fryntiz/DATOS_2TB/13-NHCK/ /home/fryntiz/0-MOUNT/DATOS/13-NHCK/
+rsync -avzt --delete --progress --exclude '.SynologyWorkingDirectory' root@172.18.1.1:/media/fryntiz/DATOS_2TB/13-NHCK/ /home/fryntiz/0-MOUNT/DATOS/13-NHCK/
