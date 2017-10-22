@@ -62,50 +62,50 @@ while :
     read -p "Elige → " entrada
     case $entrada in
 
-        1)  # Generar Todos los BACKUPS
+        1)  # Actualizar Software
             clear
             echo -e "$verde llega"
-            break;;
+            continue;;
 
-        2)  #
+        2)  # Generar Todos los BACKUPS
             clear
             echo -e "$verde llega"
-            break;;
+            continue;;
 
-        3)  #
+        3)  # Servicios
             clear
             echo -e "$verde llega"
-            break;;
+            continue;;
 
-        4)  #
+        4)  # Pentesting y Hacking ético
             clear
             echo -e "$verde llega"
-            break;;
+            continue;;
 
-        5)  #
+        5)  # Firewall
             clear
             echo -e "$verde llega"
-            break;;
+            continue;;
 
-        6)  #
+        6)  # Monitorización
             clear
             echo -e "$verde llega"
-            break;;
+            continue;;
 
-        7)  #
+        7)  # Sincronizar directorios mediante RSYNC
             clear
             echo -e "$verde llega"
-            break;;
+            continue;;
 
-        8)  #
+        8)  # Limpiar Sistema Operativo
             clear
             echo -e "$verde llega"
-            break;;
+            continue;;
 
         9)  # Configurar Opciones
             clear
             echo -e "$verde Configurando opciones$amarillo (No implementado aún)"
-            break;;
+            continue;;
 
         0)  # Salir de este Menú
             clear
