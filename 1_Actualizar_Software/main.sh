@@ -8,18 +8,40 @@
 # ###       www.fryntiz.es        ### #
 #######################################
 
-############################
-##   Constantes Colores   ##
-############################
-amarillo="\033[1;33m"
-azul="\033[1;34m"
-blanco="\033[1;37m"
-cyan="\033[1;36m"
-gris="\033[0;37m"
-magenta="\033[1;35m"
-rojo="\033[1;31m"
-verde="\033[1;32m"
 
 #############################
 ##   Variables Generales   ##
 #############################
+
+# Menu
+while :
+    do
+        clear
+
+        echo ""
+        echo -e "             $amarillo $MenuActual $rojo   $version"
+        echo ""
+        echo -e "   $rojo 1)  $verde op1"
+        echo -e "   $rojo 0)  $verde Volver atrás$gris"
+        echo ""
+
+    read -p "  → " OPCION
+    case $OPCION in
+
+        1)  # Op1
+            clear
+            . $DirInstalacion/1_Actualizar_Software/????
+            read -p "Pulsa una tecla para continuar" foo
+            continue;;
+
+        0)  # Volver Atrás
+            clear
+            break;;
+
+        *)  # Cualquier otra opción que no sea las anteriores
+            clear
+            echo ""
+            echo -e "$rojo La opción elegida no es válida$amarillo introduce otra"
+            read -p "Pulsa una tecla para continuar" foo;;
+    esac
+done
