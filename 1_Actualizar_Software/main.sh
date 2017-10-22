@@ -22,9 +22,9 @@ while :
         echo -e "             $amarillo $MenuActual $rojo   $version"
         echo ""
         echo -e "   $rojo 1)  $verde Aplicar todas las actualizaciones siguientes"
-        echo -e "   $rojo 1)  $verde Actualizar Repositorios del Sistema"
-        echo -e "   $rojo 2)  $verde Actualizar paquetes FlatPak"
-        echo -e "   $rojo 3)  $verde Actualizar paquetes Snap"
+        echo -e "   $rojo 2)  $verde Actualizar Repositorios del Sistema"
+        echo -e "   $rojo 3)  $verde Actualizar paquetes FlatPak"
+        echo -e "   $rojo 4)  $verde Actualizar paquetes Snap"
         echo -e "   $rojo 0)  $verde Volver atrás$gris"
         echo ""
 
