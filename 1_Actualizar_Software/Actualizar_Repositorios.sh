@@ -23,3 +23,12 @@ verde="\033[1;32m"
 #############################
 ##   Variables Generales   ##
 #############################
+
+# Actualizar Lista de Repostorios
+sudo apt update
+
+# Actualizar programas a la última versión
+sudo apt upgrade -y
+
+# Reparar alguna dependencia rota si la hubiese
+sudo apt install -f -y
