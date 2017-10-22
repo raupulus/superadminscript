@@ -59,56 +59,56 @@ while :
         echo -e "   $rojo 8)  $verde $Menu8"
         echo -e "   $rojo 9)  $verde $Configurar"
         echo -e "   $rojo 0)  $verde $Salir"
+        echo ""
 
-    read -p "Elige → " entrada
-    case $entrada in
+    read -p "  → " OPCION
+    case $OPCION in
 
         1)  # Actualizar Software
             clear
-            echo -e "$verde llega"
             . $DirInstalacion/1_Actualizar_Software/main.sh
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         2)  # Generar Todos los BACKUPS
             clear
-            echo -e "$verde llega"
+            . $DirInstalacion/2_Backups/main.sh
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         3)  # Servicios
             clear
-            echo -e "$verde llega"
+            . $DirInstalacion/3_Servicios/main.sh
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         4)  # Pentesting y Hacking ético
             clear
-            echo -e "$verde llega"
+            . $DirInstalacion/4_Pentesting/main.sh
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         5)  # Firewall
             clear
-            echo -e "$verde llega"
+            . $DirInstalacion/5_Firewall/main.sh
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         6)  # Monitorización
             clear
-            echo -e "$verde llega"
+            . $DirInstalacion/6_Monitorización/main.sh
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         7)  # Sincronizar directorios mediante RSYNC
             clear
-            echo -e "$verde llega"
+            . $DirInstalacion/7-Rsync/main.sh
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         8)  # Limpiar Sistema Operativo
             clear
-            echo -e "$verde llega"
+            . $DirInstalacion/8_Limpiar_Sistema/main.sh
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
