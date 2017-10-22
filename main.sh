@@ -36,7 +36,8 @@ Configurar="Configurar Opciones para el funcionamiento del Menú"
 Salir='Salir de este Menú'
 
 UsuarioActual=$(whoami)
-DirInstalacion="~/.SuperBashScript"
+#DirInstalacion="~/.SuperBashScript"
+DirInstalacion="/home/$UsuarioActual/1_GIT/3-Fryntiz/SuperScriptBash"
 DirPreferencias="$DirInstalacion/PREFERENCIAS" #Cuando se termine de depurar apuntará a "preferencias"
 version="$(cat $DirInstalacion/version.csv)"
 
@@ -65,6 +66,7 @@ while :
         1)  # Actualizar Software
             clear
             echo -e "$verde llega"
+            . $DirInstalacion/1_Actualizar_Software/main.sh
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
