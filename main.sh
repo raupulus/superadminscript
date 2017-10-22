@@ -40,11 +40,11 @@ DirInstalacion="~/.SuperBashScript"
 DirPreferencias="$DirInstalacion/PREFERENCIAS" #Cuando se termine de depurar apuntará a "preferencias"
 version="$(cat $DirInstalacion/version.csv)"
 
-clear
-
 # Menu
 while :
     do
+        clear
+
         echo ""
         echo -e "             $amarillo $MenuActual $rojo   $version"
         echo ""
@@ -55,7 +55,7 @@ while :
         echo -e "   $rojo 5)  $verde $Menu5"
         echo -e "   $rojo 6)  $verde $Menu6"
         echo -e "   $rojo 7)  $verde $Menu7"
-        echo -e "   $rojo 7)  $verde $Menu8"
+        echo -e "   $rojo 8)  $verde $Menu8"
         echo -e "   $rojo 9)  $verde $Configurar"
         echo -e "   $rojo 0)  $verde $Salir"
 
@@ -65,46 +65,55 @@ while :
         1)  # Actualizar Software
             clear
             echo -e "$verde llega"
+            read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         2)  # Generar Todos los BACKUPS
             clear
             echo -e "$verde llega"
+            read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         3)  # Servicios
             clear
             echo -e "$verde llega"
+            read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         4)  # Pentesting y Hacking ético
             clear
             echo -e "$verde llega"
+            read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         5)  # Firewall
             clear
             echo -e "$verde llega"
+            read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         6)  # Monitorización
             clear
             echo -e "$verde llega"
+            read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         7)  # Sincronizar directorios mediante RSYNC
             clear
             echo -e "$verde llega"
+            read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         8)  # Limpiar Sistema Operativo
             clear
             echo -e "$verde llega"
+            read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         9)  # Configurar Opciones
             clear
             echo -e "$verde Configurando opciones$amarillo (No implementado aún)"
+            read -p "Pulsa una tecla para continuar" foo
             continue;;
 
         0)  # Salir de este Menú
@@ -117,6 +126,6 @@ while :
             clear
             echo ""
             echo -e "$rojo La opción elegida no es válida$amarillo introduce otra"
-            read foo;;
+            read -p "Pulsa una tecla para continuar" foo;;
     esac
 done
