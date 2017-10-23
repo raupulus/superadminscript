@@ -1,29 +1,27 @@
 #!/bin/bash
+# -*- ENCODING: UTF-8 -*-
+#######################################
+# ###     Raúl Caro Pastorino     ### #
+## ##                             ## ##
+### # https://github.com/fryntiz/ # ###
+## ##                             ## ##
+# ###       www.fryntiz.es        ### #
+#######################################
 
-#Variables Generales
+
+#############################
+##   Variables Generales   ##
+#############################
 password=""
 excluirDeBackup="-x{!home,!tmp,!var/log/,!proc,!mnt,!sys/,!media/,!run/media/,!dev/pts,!run/user/1000/} -xr{!lost+found,!.cache,!.trash}"
 
-UsuarioActual=$(whoami)
-DirInstalacion="Documentos/0-Scripts"
-LugarDeInstalacion="/home/$UsuarioActual/$DirInstalacion"
+#Directorio: /home/backups /backups???
+Preferencias="$(cat $DirPreferencias/backups.pref)"
 
-#Directorio: /home/fryntiz/8_Backups/2_PC_Sobremesa/Raíz
-DirPreferencias="$LugarDeInstalacion/PREFERENCIAS/backups.pref"
-Preferencias="$(cat $DirPreferencias)"
+NombreBackup="$Preferencias/0-TMP/backup_HOME_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2"
+NombreBackupCifrado="$Preferencias/backup_HOME_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.7z"
 
-NombreBackup="$Preferencias/0-TMP/backup_SYSTEM_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.tar.bz2"
-NombreBackupCifrado="$Preferencias/backup_SYSTEM_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.7z"
-
-##### CONSTANTES COLORES #####
-grisC="\033[0;37m"
-rojoC="\033[1;31m"
-verdeC="\033[1;32m"
-azulC="\033[1;34m"
-magentaC="\033[1;35m"
-cyanC="\033[1;36m"
-blanco="\033[1;37m"
-amarillo="\033[1;33m"
+clear
 
 clear
 echo -e "$rojoC     Introduce la contraseña$verdeC"
@@ -37,14 +35,14 @@ password2=$entrada1
 echo -e "$grisC"
 if [ $password1 = $password2 ]
 then
-	echo -e "$amarillo Las dos claves coinciden"
-	echo -e "$azulC Comenzará el Backup$grisC"
-	password=$password1
-	sleep 2
+    echo -e "$amarillo Las dos claves coinciden"
+    echo -e "$azulC Comenzará el Backup$grisC"
+    password=$password1
+    sleep 2
 else
-	echo -e "$amarillo No coinciden las dos contraseñas"
-	echo -e " Vuelve a intentarlo $grisC"
-	exit 1
+    echo -e "$amarillo No coinciden las dos contraseñas"
+    echo -e " Vuelve a intentarlo $grisC"
+    exit 1
 fi
 
 sudo tar -cvpjf  $NombreBackup --exclude=/proc --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=/mnt --exclude=/sys/ --exclude=/media --exclude=.cache --exclude=.trash --exclude=/run/media --exclude=/var/log --exclude=/tmp --exclude=/var/tmp --exclude=/home --exclude=/run/media --exclude=/run/log --exclude=/dev/pts --exclude=.Trash /
