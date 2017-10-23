@@ -1,0 +1,2 @@
+#Colocar una ruta en cada linea. Puede ser absoluta o a partir del directorio de usuario con el que ejecutamos el script. Separar con punto y coma ";" primero el remoto y luego el local así: rutaRemota;rutaLocal. Cuidado con los espacios (usar "\" para remoto solamente) Ejemplo: ruta\ Remota;ruta Local;Final;
+
