@@ -45,17 +45,12 @@ function crearPassword() {
 crearPassword
 
 function crearBackup() {
-    sudo tar -cvpjf  $NombreBackup --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=.cache --exclude=.trash --exclude=.Trash --exclude=0-MOUNT --exclude=1-MOUNT --exclude=1_GIT --exclude=2_Bases_de_Datos --exclude=3_Librerías --exclude=4_Programas --exclude=5_Entornos_de_Trabajo --exclude=6_Máquinas_Virtuales --exclude=7_Mis_Proyectos --exclude=8_Backups --exclude=9_Dropbox --exclude=10_GoogleDrive --exclude=11_CloudStation --exclude=12_Pentesting --exclude=Descargas --exclude=Documentos --exclude=Imágenes --exclude=NHCK --exclude=Plantillas --exclude=Vídeos --exclude=.PlayOnLinux/wineprefix --exclude=.local/share/Trash /home
+
 }
 
 function cifrarBackup() {
-    sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password $NombreBackup $NombreBackupCifrado
-    sudo chown $UsuarioActual:$UsuarioActual $NombreBackup
-    sudo chown $UsuarioActual:$UsuarioActual $NombreBackupCifrado
-    #rm $NombreBackup
-    mv $NombreBackupCifrado "$Preferencias/2_PC_Sobremesa/Raíz/"
-}
 
+}
 
 #Finalizando
 echo -e "$magenta Se ha completado la copia de seguridad$gris"

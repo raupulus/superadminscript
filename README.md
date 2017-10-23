@@ -3,6 +3,8 @@ El objetivo principal de este script de administración es realizar operaciones 
 
 Este menú pretende facilitar la vida a los usuarios y administradores que repitan ciertas tareas
 
+![Vista Previa](VistaPrevia.png "Vista Previa")
+
 ## Origen del menú
 En principio el menú se va forjando alrededor de las necesidades que voy teniendo en mis equipos por lo que puede no ser útil para usted al 100% pero le ofrezco una base para crear su propio menú de gestión o colaborar en mejorar este que ya existe.
 
