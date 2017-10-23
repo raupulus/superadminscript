@@ -23,36 +23,38 @@ NombreBackupCifrado="$Preferencias/backup_HOME_AÑO`date +%y`_MES`date +%b`_DIA`
 
 clear
 
-clear
-echo -e "$rojoC     Introduce la contraseña$verdeC"
-read entrada
-password1=$entrada
+function crearPassword() {
+    read -p "Introduce la contraseña de cifrado → " password1
 
-clear
-echo -e "$rojoC     Vuelve a introducir la contraseña$verdeC"
-read entrada1
-password2=$entrada1
-echo -e "$grisC"
-if [ $password1 = $password2 ]
-then
-    echo -e "$amarillo Las dos claves coinciden"
-    echo -e "$azulC Comenzará el Backup$grisC"
-    password=$password1
-    sleep 2
-else
-    echo -e "$amarillo No coinciden las dos contraseñas"
-    echo -e " Vuelve a intentarlo $grisC"
-    exit 1
-fi
+    clear
 
-sudo tar -cvpjf  $NombreBackup --exclude=/proc --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=/mnt --exclude=/sys/ --exclude=/media --exclude=.cache --exclude=.trash --exclude=/run/media --exclude=/var/log --exclude=/tmp --exclude=/var/tmp --exclude=/home --exclude=/run/media --exclude=/run/log --exclude=/dev/pts --exclude=.Trash /
+    read -p "Introduce la contraseña de cifrado → " password2
 
-sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password $NombreBackup $NombreBackupCifrado
+    if [ $password1 = $password2 ]
+    then
+        echo -e "$amarillo Las dos claves coinciden$gris"
+        echo -e "$azul Comenzará el Backup$gris"
+        password=$password1
+        sleep 2
+    else
+        echo -e "$amarillo No coinciden las dos contraseñas"
+        echo -e " Abortando Backup $gris"
+        exit 1
+    fi
+}
+crearPassword
 
-sudo chown $UsuarioActual:$UsuarioActual $NombreBackup
-rm $NombreBackup
-mv $NombreBackupCifrado "$Preferencias/2_PC_Sobremesa/Raíz/"
+function crearBackup() {
+    sudo tar -cvpjf  $NombreBackup --exclude=/proc --exclude=lost+found --exclude=backup*.tar.bz2 --exclude=/mnt --exclude=/sys/ --exclude=/media --exclude=.cache --exclude=.trash --exclude=/run/media --exclude=/var/log --exclude=/tmp --exclude=/var/tmp --exclude=/home --exclude=/run/media --exclude=/run/log --exclude=/dev/pts --exclude=.Trash /
+}
+
+function cifrarBackup() {
+    sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password $NombreBackup $NombreBackupCifrado
+
+    sudo chown $UsuarioActual:$UsuarioActual $NombreBackup
+    rm $NombreBackup
+    mv $NombreBackupCifrado "$Preferencias/2_PC_Sobremesa/Raíz/"
+}
 
 #Finalizando
-echo -e "$magentaC Se ha completado la copia de seguridad$grisC"
-echo -e "$grisC"
+echo -e "$magenta Se ha completado la copia de seguridad$gris"
