@@ -29,28 +29,28 @@ VersionActual="$version creando la base del menú"
 clear;
 
 #Comprobar versión y cambios
-echo -e "$verdeC        Comprobando versión$grisC"
+echo -e "$verde        Comprobando versión$gris"
 sleep 1
 clear
-echo -e "$verdeC        Comprobando versión...$grisC"
+echo -e "$verde        Comprobando versión...$gris"
 sleep 1
 clear
-echo -e "$verdeC        Comprobando versión...$rojoC'OK'$grisC"
-echo -e "$verdeC               Versión actual: $rojoC$VersionActual$grisC"
+echo -e "$verde        Comprobando versión...$rojo'OK'$gris"
+echo -e "$verde               Versión actual: $rojo$VersionActual$gris"
 echo ""
 
-echo -e "$verdeC        Descargando contenido$grisC"
+echo -e "$verde        Descargando contenido$gris"
 #Condicional if: -d para comprobar si existe dir y -f para archivos -x permisos de ejecución
 if [ -d ".git" ]
     then
-        echo -e "$rojoC El repositorio git si está inicializado$grisC"
+        echo -e "$rojo El repositorio git si está inicializado$gris"
         git fetch origin master
         git pull origin master
         git stash
         clear
         git pull origin master
     else
-        echo -e "$rojoC .git No existe$grisC"
+        echo -e "$rojo .git No existe$gris"
         git init
         git remote add origin https://github.com/fryntiz/SuperScriptBash
         git fetch origin master
@@ -67,4 +67,4 @@ fi
 #. main.sh
 #sudo sh instalador.sh
 
-echo -e "$amarillo Aún estamos en pruebas y es muy probable que falle el actualizador automático$grisC"
+echo -e "$amarillo Aún estamos en pruebas y es muy probable que falle el actualizador automático$gris"
