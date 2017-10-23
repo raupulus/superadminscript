@@ -44,7 +44,7 @@ fi
 
 #Mostrar el usuario que soy y la ruta donde se instalará el menú
 echo -e "Instalando script con el usuario: $verde$subrayar$UsuarioActual$gris"
-echo -e "El Menú se instalará en el directorio: $verde$subrayar$LugarDeInstalacion$gris"
+echo -e "El Menú se instalará en el directorio: $verde$subrayar$DirInstalacion$gris"
 echo -e "Pulsa control+C para abortar la instalación antes de $rojo 5 segundos$gris"
 sleep 1
 echo -e "$rojo 4$gris ... Segundos para instalar"
