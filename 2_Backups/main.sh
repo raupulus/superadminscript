@@ -36,7 +36,7 @@ while :
             clear
             . $DirInstalacion/2_Backups/BackupSystem.sh
             . $DirInstalacion/2_Backups/BackupHome.sh
-            . $DirInstalacion/2_Backups/HomeUsuarioActual.sh
+            . $DirInstalacion/2_Backups/otrosDirectorios.sh
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
