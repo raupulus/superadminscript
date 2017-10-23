@@ -22,26 +22,28 @@ NombreBackup="$Preferencias/0-TMP/backup_HOME_AÑO`date +%y`_MES`date +%b`_DIA`d
 NombreBackupCifrado="$Preferencias/backup_HOME_AÑO`date +%y`_MES`date +%b`_DIA`date +%d`.7z"
 
 clear
-echo -e "$rojoC     Introduce la contraseña$verdeC"
-read entrada
-password1=$entrada
 
-clear
-echo -e "$rojoC     Vuelve a introducir la contraseña$verdeC"
-read entrada1
-password2=$entrada1
-echo -e "$grisC"
-if [ $password1 = $password2 ]
-then
-    echo -e "$amarillo Las dos claves coinciden"
-    echo -e "$azulC Comenzará el Backup$grisC"
-    password=$password1
-    sleep 2
-else
-    echo -e "$amarillo No coinciden las dos contraseñas"
-    echo -e " Vuelve a intentarlo $grisC"
-    exit 1
-fi
+function crearPassword() {
+    read -p "Introduce la contraseña de cifrado → " password1
+
+    clear
+
+    read -p "Introduce la contraseña de cifrado → " password2
+
+    if [ $password1 = $password2 ]
+    then
+        echo -e "$amarillo Las dos claves coinciden$gris"
+        echo -e "$azul Comenzará el Backup$gris"
+        password=$password1
+        sleep 2
+    else
+        echo -e "$amarillo No coinciden las dos contraseñas"
+        echo -e " Abortando Backup $gris"
+        exit 1
+    fi
+}
+crearPassword
+
 
 sudo 7z a -t7z -r -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -mhe=on -p$password /home/fryntiz/8_Backups/0-TMP/$nombreBackup.7z -x{!0-MOUNT,!1_GIT,!1-MOUNT,!2_Bases_de_Datos,!3_Librerías,!4_Programas,!5_Entornos_de_Trabajo,!6_Máquinas_Virtuales,!7_Mis_Proyectos,!8_Backups,!9_Dropbox,!10_GoogleDrive,!11_CloudStation,!12_Pentesting,!Descargas,!Documentos,!Imágenes,!NHCK,!Plantillas,!Vídeos,!.PlayOnLinux/wineprefix,!.local/share/Trash} -xr{!lost+found,!.cache,!.trash} /home/fryntiz/
 
