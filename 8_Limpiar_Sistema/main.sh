@@ -8,7 +8,6 @@
 # ###       www.fryntiz.es        ### #
 #######################################
 
-
 #############################
 ##   Variables Generales   ##
 #############################
@@ -21,18 +20,22 @@ while :
         echo ""
         echo -e "             $amarillo LIMPIAR SISTEMA $rojo   $version"
         echo ""
-        echo -e "   $rojo 1)  $verde op1"
+        echo -e "   $rojo 1)  $verde Eliminar paquetes sin utilizar"
+        echo -e "   $rojo 1)  $verde Eliminar"
+        echo -e "   $rojo 1)  $verde Eliminar"
+        echo -e "   $rojo 1)  $verde Eliminar"
         echo -e "   $rojo 0)  $verde Volver atrás$gris"
         echo ""
 
     read -p "  → " OPCION
     case $OPCION in
 
-        1)  # Op1
+        1)  # Eliminar paquetes sin utilizar
             clear
-            . $DirInstalacion/8_Limpiar_Sistema/????
+            sudo apt autoremove
             read -p "Pulsa una tecla para continuar" foo
             continue;;
+
 
         0)  # Volver Atrás
             clear
