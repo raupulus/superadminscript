@@ -23,6 +23,8 @@ verde="\033[1;32m"
 #############################
 ##   Variables Generales   ##
 #############################
+IP=`ip -4 route get 8.8.8.8 | awk {'print $7'} | tr -d '\n'`
+
 MenuActual='Menú Principal de Administración - by Fryntiz'
 Menu1='Actualizar Software'
 Menu2='Backups o Copias de seguridad'
