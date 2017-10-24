@@ -21,7 +21,7 @@ while :
         echo ""
         echo -e "             $amarillo Firewall $rojo   $version"
         echo ""
-        echo -e "   $rojo 1)  $verde op1"
+        #echo -e "   $rojo 1)  $verde op1"
         echo -e "   $rojo 0)  $verde Volver atrás$gris"
         echo ""
 
@@ -30,7 +30,7 @@ while :
 
         1)  # Op1
             clear
-            . $DirInstalacion/5_Firewall/????
+            #. $DirInstalacion/5_Firewall/????
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
