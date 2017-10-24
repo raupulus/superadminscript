@@ -21,9 +21,7 @@ while :
         echo -e "             $amarillo LIMPIAR SISTEMA $rojo   $version"
         echo ""
         echo -e "   $rojo 1)  $verde Eliminar paquetes sin utilizar"
-        echo -e "   $rojo 1)  $verde Eliminar"
-        echo -e "   $rojo 1)  $verde Eliminar"
-        echo -e "   $rojo 1)  $verde Eliminar"
+        echo -e "   $rojo 2)  $verde Eliminar paquetes descargados"
         echo -e "   $rojo 0)  $verde Volver atrás$gris"
         echo ""
 
@@ -36,6 +34,11 @@ while :
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
+        2)  # Eliminar paquetes descargados
+            clear
+            sudo apt clean
+            read -p "Pulsa una tecla para continuar" foo
+            continue;;
 
         0)  # Volver Atrás
             clear
