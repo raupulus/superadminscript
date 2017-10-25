@@ -8,29 +8,29 @@
 # ###       www.fryntiz.es        ### #
 #######################################
 
-
 #############################
 ##   Variables Generales   ##
 #############################
 
 # Menu
 while :
-    do
-        clear
+do
+    clear
 
-        echo ""
-        echo -e "             $amarillo Monitorización $rojo   $version"
-        echo ""
-        echo -e "   $rojo 1)  $verde op1"
-        echo -e "   $rojo 0)  $verde Volver atrás$gris"
-        echo ""
+    echo ""
+    echo -e "             $amarillo Monitorización $rojo   $version"
+    echo ""
+    echo "No implementado aún"
+    #echo -e "   $rojo 1)  $verde op1"
+    echo -e "   $rojo 0)  $verde Volver atrás$gris"
+    echo ""
 
     read -p "  → " OPCION
     case $OPCION in
 
         1)  # Op1
             clear
-            . $DirInstalacion/6_Monitorización/????
+            #. $DirInstalacion/6_Monitorización/????
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 

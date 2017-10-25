@@ -8,6 +8,9 @@
 # ###       www.fryntiz.es        ### #
 #######################################
 
+exclusiones='--exclude .SynologyWorkingDirectory'
+opciones='-avzt --delete --progress'
+listado=`cat $DirPreferencias/rsyncDirectorios.pref | tail -n+2`
 
 #############################
 ##   Variables Generales   ##
@@ -21,16 +24,21 @@ while :
         echo ""
         echo -e "             $amarillo RSYNC $rojo   $version"
         echo ""
-        echo -e "   $rojo 1)  $verde op1"
+        echo "Este menú solo muestra el comando"
+        echo "Es necesario hacer varias pruebas antes de quitar el echo"
+        echo -e "   $rojo 1)  $verde Sincronizar todo"
         echo -e "   $rojo 0)  $verde Volver atrás$gris"
         echo ""
 
     read -p "  → " OPCION
     case $OPCION in
 
-        1)  # Op1
+        1)  # Sincronizar todo
             clear
-            . $DirInstalacion/7-Rsync/????
+            for linea in $listado
+            do
+                echo "rsync $opciones $exclusiones $linea"
+            done
             read -p "Pulsa una tecla para continuar" foo
             continue;;
 
